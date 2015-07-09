@@ -1,0 +1,13 @@
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\obj\x86\Debug\MECH423 Serial Communicator.exe
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\obj\x86\Debug\MECH423 Serial Communicator.pdb
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\bin\Debug\MECH423 Serial Communicator.exe
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\bin\Debug\MECH423 Serial Communicator.pdb
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\obj\x86\Debug\Serial Communicator.csprojResolveAssemblyReference.cache
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\obj\x86\Debug\Serial Communicator.csproj.GenerateResource.Cache
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\obj\x86\Debug\Serial_Comm.Form1.resources
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\obj\x86\Debug\Serial_Comm.Properties.Resources.resources
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\obj\x86\Debug\Serial Communicator.csproj.ResolveComReference.cache
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\bin\Debug\WebCam_Capture.dll
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\obj\x86\Debug\Interop.Office.dll
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\bin\Debug\MetroFramework.dll
+S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\bin\Debug\MetroFramework.Fonts.dll
