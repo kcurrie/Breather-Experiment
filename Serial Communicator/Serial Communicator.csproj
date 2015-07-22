@@ -58,6 +58,9 @@
     <Reference Include="MetroFramework.Fonts">
       <HintPath>..\Winforms-modernui-master\MetroDLL\MetroFramework.Fonts.dll</HintPath>
     </Reference>
+    <Reference Include="Properties.Resources.Designer.cs">
+      <HintPath>..\Winforms-modernui-master\winforms-modernui-master\MetroFramework.Demo\obj\Release\TempPE\Properties.Resources.Designer.cs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />

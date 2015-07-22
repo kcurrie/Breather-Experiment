@@ -41,7 +41,7 @@ double humidity = 0; // [%]
 double temp_p = 0; // [temperature from humidity sensor - Fahrenheit]
 double temp_h = 0;  //[temperature from humidity sensor - Celsius]
 //double baromin = 30.03;// [barom in] - It's hard to calculate baromin locally, do this in the agent
-double pressure = 0;
+double pressure = 0;  //Pressure in Pa
 double dewpt; // [dewpoint C] 
 
 double batt_lvl = 11.8; //[analog value from 0 to 1023]
@@ -162,8 +162,8 @@ void calcWeather()
   temp_h = myHumidity.readTemperature();  
 
   //Calc pressure and temp
-  pressure = myPressure.readPressure();
-  temp_p = (myPressure.readTempF() - 32)*5/9;
+  pressure = myPressure.readPressure()/1000;    //pressure in kPa now
+  temp_p = (myPressure.readTempF() - 32)*5/9;   //temperature to celsius
 
   //Calc dewptf
   dewpt = dewPoint(temp_h, humidity);

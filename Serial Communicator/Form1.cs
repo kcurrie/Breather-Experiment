@@ -20,7 +20,27 @@ using System.Globalization;
 
 namespace Serial_Comm
 {
-    public partial class Form1 : MetroForm
+
+    public enum MetroColorStyle
+    {
+        Default,
+        Black,
+        White,
+        Silver,
+        Blue,
+        Green,
+        Lime,
+        Teal,
+        Orange,
+        Brown,
+        Pink,
+        Magenta,
+        Purple,
+        Red,
+        Yellow
+    }
+
+    public partial class txtTemp : MetroForm
     {
         //Excel variables
         private static Excel.Workbook MyBook = null;
@@ -71,19 +91,23 @@ namespace Serial_Comm
 
         
         /////////////////////////////////
-        public Form1()
+        public txtTemp()
         {
             InitializeComponent();
-            this.StyleManager = this.msmMain; msmMain is the name of stylemanager;
+            //this.StyleManager = this.msmMain; msmMain is the name of stylemanager;
 
-                /*
+
             DataTable _table = new DataTable();
-            _table.ReadXml(Application.StartupPath + @"\Data\Books.xml");
+            _table.ReadXml(@"C:\Users\KCURRIE\Desktop\Breather-Experiment\Winforms-modernui-master\winforms-modernui-master\MetroFramework.Demo\Data\Books.xml");
             metroGrid1.DataSource = _table;
 
             metroGrid1.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
-            metroGrid1.AllowUserToAddRows = false;
-                 * */
+          /*  metroGrid1.AllowUserToAddRows = false;
+
+            private Components.MetroStyleManager metroStyleManager;
+            this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
+
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit(); */
         }
 
         private void ComPortUpdate()
@@ -93,6 +117,7 @@ namespace Serial_Comm
             string[] comPortArray = System.IO.Ports.SerialPort.GetPortNames().ToArray();
             Array.Reverse(comPortArray);
             cmbComPort1.Items.AddRange(comPortArray);
+
             if (cmbComPort1.Items.Count != 0)
                 cmbComPort1.SelectedIndex = 0;
             else
@@ -103,7 +128,17 @@ namespace Serial_Comm
                 cmbComPort2.SelectedIndex = 0;
             else
                 cmbComPort2.Text = "No Ports Found!";
-
+            /*
+            //Check if combo port used by other arduino
+            if( btnConnect1.Text =="Disconnect")
+            {
+                cmbComPort2.Items.Remove(cmbComPort1.SelectedItem.ToString());
+            }
+            if (btnConnect2.Text == "Disconnect")
+            {
+                cmbComPort1.Items.Remove(cmbComPort2.SelectedItem.ToString());
+            }
+            */
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -116,12 +151,46 @@ namespace Serial_Comm
 
         private void cmbComPort1_DropDown(object sender, EventArgs e)
         {
-            ComPortUpdate();
+            //ComPortUpdate();
+            cmbComPort1.Items.Clear();
+            
+            string[] comPortArray = System.IO.Ports.SerialPort.GetPortNames().ToArray();
+            Array.Reverse(comPortArray);
+            cmbComPort1.Items.AddRange(comPortArray);
+
+            if (cmbComPort1.Items.Count != 0)
+                cmbComPort1.SelectedIndex = 0;
+            else
+                cmbComPort1.Text = "No Ports Found!";
+            //Check if combo port used by other arduino
+            
+            if (btnConnect2.Text == "Disconnect")
+            {
+                cmbComPort1.Items.Remove(cmbComPort2.SelectedItem.ToString());
+            }
+            
         }
 
         private void cmbComPort2_DropDown(object sender, EventArgs e)
         {
-            ComPortUpdate();
+            //ComPortUpdate();
+            
+            cmbComPort2.Items.Clear();
+            string[] comPortArray = System.IO.Ports.SerialPort.GetPortNames().ToArray();
+            Array.Reverse(comPortArray);
+            
+
+            cmbComPort2.Items.AddRange(comPortArray);
+            if (cmbComPort2.Items.Count != 0)
+                cmbComPort2.SelectedIndex = 0;
+            else
+                cmbComPort2.Text = "No Ports Found!";
+
+            //Check if combo port used by other arduino
+            if (btnConnect1.Text == "Disconnect")
+            {
+                cmbComPort2.Items.Remove(cmbComPort1.SelectedItem.ToString());
+            }
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -198,7 +267,9 @@ namespace Serial_Comm
             }
         }
 
-        private void btnStartExperiment_Click(object sender, EventArgs e)
+
+
+        private void btnStartExperiment_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -225,6 +296,7 @@ namespace Serial_Comm
 
             tmrData.Enabled = true;         //Start reading data
             startExcel();
+
         }
 
         private void startExcel()
@@ -328,16 +400,23 @@ namespace Serial_Comm
                     {
                         for (int i = 0; i < 1; i++) { chartHumidity.Series[i].Points.RemoveAt(0); }
                     }
+                    if (chartPressure.Series[0].Points.Count > 150)
+                    {
+                        for (int i = 0; i < 1; i++) { chartPressure.Series[i].Points.RemoveAt(0); }
+                    }
 
                     //graph and display values
                     chartHumidity.Series[0].Points.AddY(currentData["humidity"]);
                     chartTemp.Series[0].Points.AddY(currentData["temp_h"]);
-                    txtHumidity.Text = currentData["humidity"].ToString();
-                    txtTemp.Text = currentData["temp_h"].ToString();
+                    chartPressure.Series[0].Points.AddY(currentData["pressure"]);
+                    txtHumidityInternal.Text = currentData["humidity"].ToString();
+                    txtTempInternal.Text = currentData["temp_h"].ToString();
+                    txtPressureInternal.Text = currentData["pressure"].ToString();
 
                     //reset graph axes
                     chartHumidity.ResetAutoValues();
                     chartTemp.ResetAutoValues();
+                    chartPressure.ResetAutoValues();
                 }
             }
             
@@ -369,24 +448,30 @@ namespace Serial_Comm
 
                     //Plot data on charts
                     //If over the end data point count remove points from the beginning of graph
-                    if (chartTemp.Series[0].Points.Count > 150)
+                    if (chartTemp.Series[1].Points.Count > 150)
                     {
                         for (int i = 0; i < 1; i++) { chartTemp.Series[i].Points.RemoveAt(0); }
                     }
-                    if (chartHumidity.Series[0].Points.Count > 150)
+                    if (chartHumidity.Series[1].Points.Count > 150)
                     {
                         for (int i = 0; i < 1; i++) { chartHumidity.Series[i].Points.RemoveAt(0); }
                     }
-
+                    if (chartPressure.Series[1].Points.Count > 150)
+                    {
+                        for (int i = 0; i < 1; i++) { chartPressure.Series[i].Points.RemoveAt(0); }
+                    }
                     //graph and display values
-                    chartHumidity.Series[0].Points.AddY(currentData["humidity"]);
-                    chartTemp.Series[0].Points.AddY(currentData["temp_h"]);
-                    txtHumidity.Text = currentData["humidity"].ToString();
-                    txtTemp.Text = currentData["temp_h"].ToString();
+                    chartHumidity.Series[1].Points.AddY(currentData["humidity"]);
+                    chartTemp.Series[1].Points.AddY(currentData["temp_h"]);
+                    chartPressure.Series[1].Points.AddY(currentData["pressure"]);
+                    txtHumidityExternal.Text = currentData["humidity"].ToString();
+                    txtTempExternal.Text = currentData["temp_h"].ToString();
+                    txtPressureExternal.Text = currentData["pressure"].ToString();
 
                     //reset graph axes
                     chartHumidity.ResetAutoValues();
                     chartTemp.ResetAutoValues();
+                    chartPressure.ResetAutoValues();
 
                 }
 
@@ -397,7 +482,9 @@ namespace Serial_Comm
         
         }
 
-        private void btnSaveData_Click(object sender, EventArgs e)
+
+
+        private void btnSaveData_Click_1(object sender, EventArgs e)
         {
             filename = txtFileName.Text;
             if (filename == "")
@@ -414,6 +501,23 @@ namespace Serial_Comm
                 releaseObject(MyApp);
                 MessageBox.Show("Excel File Saved");
             }
+        }
+
+
+        private void btnSaveOnly_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Sorry, could not save");
+            
+            filename = txtFileName.Text;
+            if (filename == "")
+                MessageBox.Show("Enter a File Name");
+            else
+            {
+                MessageBox.Show(filename);
+                MyBook.SaveAs("C:\\Users\\KCURRIE\\Desktop\\Test\\" + filename + ".xlsx");
+                MessageBox.Show("Excel File Saved");
+            }
+          
         }
 
         private void releaseObject(object obj)
@@ -476,9 +580,14 @@ namespace Serial_Comm
             {
                 serialPort2.Close();
             }
-            releaseObject(MySheet);
-            releaseObject(MyBook);
-            releaseObject(MyApp);
+            //Causes errors if no excel open. Leave this in Save and close button  only
+            /*
+                releaseObject(MySheet);
+                releaseObject(MyBook);
+                releaseObject(MyApp);
+            */
+           
+            
 
         }
 
@@ -486,15 +595,20 @@ namespace Serial_Comm
         {
             var m = new Random();
             int next = m.Next(0, 13);
-            metroStyleManager.Style = (MetroColorStyle)next;
-        
+
+            //MetroStyleManager mt = new MetroStyleManager();
+            //metroStyleManager.Style = (MetroColorStyle)next;
         }
 
         private void metroTile1_Click(object sender, EventArgs e)
         {
-            metroStyleManager.Theme = metroStyleManager.Theme == MetroThemeStyle.Light ? MetroThemeStyle.Dark : MetroThemeStyle.Light;
-        
+            //metroStyleManager.Theme = metroStyleManager.Theme == MetroThemeStyle.Light ? MetroThemeStyle.Dark : MetroThemeStyle.Light;
         }
+
+
+
+
+
 
     }
 }
