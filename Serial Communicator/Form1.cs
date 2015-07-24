@@ -15,6 +15,7 @@ using System.Media;
 using Excel=Microsoft.Office.Interop.Excel;
 using MetroFramework.Forms;
 using System.Globalization;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 
@@ -107,9 +108,9 @@ namespace Serial_Comm
 
             DataTable _table = new DataTable();
             _table.ReadXml(@"C:\Users\KCURRIE\Desktop\Breather-Experiment\Winforms-modernui-master\winforms-modernui-master\MetroFramework.Demo\Data\Books.xml");
-            metroGrid1.DataSource = _table;
+            //metroGrid1.DataSource = _table;
 
-            metroGrid1.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
+            //metroGrid1.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
           /*  metroGrid1.AllowUserToAddRows = false;
 
             private Components.MetroStyleManager metroStyleManager;
@@ -156,6 +157,10 @@ namespace Serial_Comm
             chkShowResponse1.Checked = true;
             chkShowResponse2.Checked = true;
             ComPortUpdate();
+
+            chartHumidity.ChartAreas[0].AxisY.IsStartedFromZero = false;
+            chartTemp.ChartAreas[0].AxisY.IsStartedFromZero = false;
+            chartPressure.ChartAreas[0].AxisY.IsStartedFromZero = false;
         }
 
         private void cmbComPort1_DropDown(object sender, EventArgs e)
@@ -520,6 +525,29 @@ namespace Serial_Comm
             chartHumidity.ResetAutoValues();
             chartTemp.ResetAutoValues();
             chartPressure.ResetAutoValues();
+
+            /*
+            chartPressure.ChartAreas[0].RecalculateAxesScale();
+
+            // Enable scale breaks.
+            chartPressure.ChartAreas[0].AxisY.ScaleBreakStyle.Enabled = true;
+
+            // Show scale break if more than 25% of the chart is empty space.
+            chartPressure.ChartAreas[0].AxisY.ScaleBreakStyle.CollapsibleSpaceThreshold = 25;
+
+            // Set the line width of the scale break.
+            chartPressure.ChartAreas[0].AxisY.ScaleBreakStyle.LineWidth = 2;
+
+            // Set the color of the scale break.
+            chartPressure.ChartAreas[0].AxisY.ScaleBreakStyle.LineColor = Color.Red;
+
+            // If all data points are significantly far from zero, the chart will calculate the scale minimum value.
+            chartPressure.ChartAreas[0].AxisY.ScaleBreakStyle.StartFromZero = StartFromZero.No;
+
+            // Set the spacing gap between the lines of the scale break (as a percentage of the Y-axis).
+            chartPressure.ChartAreas[0].AxisY.ScaleBreakStyle.Spacing = 2;
+
+             * */
         }
 
         private void btnSaveData_Click_1(object sender, EventArgs e)
