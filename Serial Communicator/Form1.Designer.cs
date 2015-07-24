@@ -179,6 +179,13 @@
             this.txtFileName = new MetroFramework.Controls.MetroTextBox();
             this.metroTabPage5 = new MetroFramework.Controls.MetroTabPage();
             this.chartPressure = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.metroLabel30 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel29 = new MetroFramework.Controls.MetroLabel();
+            this.txtTempInternal = new MetroFramework.Controls.MetroTextBox();
+            this.txtPressureInternal = new MetroFramework.Controls.MetroTextBox();
+            this.txtHumidityExternal = new MetroFramework.Controls.MetroTextBox();
+            this.txtTempExternal = new MetroFramework.Controls.MetroTextBox();
+            this.txtPressureExternal = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel27 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel28 = new MetroFramework.Controls.MetroLabel();
             this.txtHumidityInternal = new MetroFramework.Controls.MetroTextBox();
@@ -194,13 +201,6 @@
             this.bntStop = new System.Windows.Forms.Button();
             this.bntContinue = new System.Windows.Forms.Button();
             this.metroTabPage8 = new MetroFramework.Controls.MetroTabPage();
-            this.txtPressureExternal = new MetroFramework.Controls.MetroTextBox();
-            this.txtTempExternal = new MetroFramework.Controls.MetroTextBox();
-            this.txtHumidityExternal = new MetroFramework.Controls.MetroTextBox();
-            this.txtPressureInternal = new MetroFramework.Controls.MetroTextBox();
-            this.txtTempInternal = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel29 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel30 = new MetroFramework.Controls.MetroLabel();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartTemp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartHumidity)).BeginInit();
@@ -641,7 +641,7 @@
             // metroDateTime1
             // 
             this.metroDateTime1.Location = new System.Drawing.Point(87, 20);
-            this.metroDateTime1.MinimumSize = new System.Drawing.Size(0, 29);
+            this.metroDateTime1.MinimumSize = new System.Drawing.Size(4, 29);
             this.metroDateTime1.Name = "metroDateTime1";
             this.metroDateTime1.Size = new System.Drawing.Size(200, 29);
             this.metroDateTime1.TabIndex = 98;
@@ -702,7 +702,7 @@
             this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage1.Name = "metroTabPage1";
             this.metroTabPage1.Padding = new System.Windows.Forms.Padding(25);
-            this.metroTabPage1.Size = new System.Drawing.Size(834, 535);
+            this.metroTabPage1.Size = new System.Drawing.Size(834, 544);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "Tiles && Buttons";
             this.metroTabPage1.VerticalScrollbar = true;
@@ -1016,7 +1016,7 @@
             this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage2.Name = "metroTabPage2";
             this.metroTabPage2.Padding = new System.Windows.Forms.Padding(25);
-            this.metroTabPage2.Size = new System.Drawing.Size(834, 535);
+            this.metroTabPage2.Size = new System.Drawing.Size(834, 544);
             this.metroTabPage2.TabIndex = 1;
             this.metroTabPage2.Text = "Options";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
@@ -1256,7 +1256,7 @@
             this.metroTabPage4.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage4.Name = "metroTabPage4";
             this.metroTabPage4.Padding = new System.Windows.Forms.Padding(25);
-            this.metroTabPage4.Size = new System.Drawing.Size(834, 535);
+            this.metroTabPage4.Size = new System.Drawing.Size(834, 544);
             this.metroTabPage4.TabIndex = 3;
             this.metroTabPage4.Text = "Labels && Text";
             this.metroTabPage4.VerticalScrollbarBarColor = true;
@@ -1542,7 +1542,7 @@
             this.metroTabPage7.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage7.Name = "metroTabPage7";
             this.metroTabPage7.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.metroTabPage7.Size = new System.Drawing.Size(834, 535);
+            this.metroTabPage7.Size = new System.Drawing.Size(834, 544);
             this.metroTabPage7.TabIndex = 6;
             this.metroTabPage7.Text = "Grid";
             this.metroTabPage7.VerticalScrollbarBarColor = true;
@@ -1593,7 +1593,7 @@
             this.metroGrid1.RowHeadersVisible = false;
             this.metroGrid1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.metroGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.metroGrid1.Size = new System.Drawing.Size(834, 530);
+            this.metroGrid1.Size = new System.Drawing.Size(834, 539);
             this.metroGrid1.TabIndex = 2;
             // 
             // metroTabPage6
@@ -1612,7 +1612,7 @@
             this.metroTabPage6.HorizontalScrollbarSize = 10;
             this.metroTabPage6.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage6.Name = "metroTabPage6";
-            this.metroTabPage6.Size = new System.Drawing.Size(834, 535);
+            this.metroTabPage6.Size = new System.Drawing.Size(834, 544);
             this.metroTabPage6.TabIndex = 5;
             this.metroTabPage6.Text = "Setup";
             this.metroTabPage6.VerticalScrollbarBarColor = true;
@@ -1714,6 +1714,7 @@
             // 
             // metroTabPage5
             // 
+            this.metroTabPage5.Controls.Add(this.chartPressure);
             this.metroTabPage5.Controls.Add(this.metroLabel30);
             this.metroTabPage5.Controls.Add(this.metroLabel29);
             this.metroTabPage5.Controls.Add(this.txtTempInternal);
@@ -1721,7 +1722,6 @@
             this.metroTabPage5.Controls.Add(this.txtHumidityExternal);
             this.metroTabPage5.Controls.Add(this.txtTempExternal);
             this.metroTabPage5.Controls.Add(this.txtPressureExternal);
-            this.metroTabPage5.Controls.Add(this.chartPressure);
             this.metroTabPage5.Controls.Add(this.metroLabel27);
             this.metroTabPage5.Controls.Add(this.metroLabel28);
             this.metroTabPage5.Controls.Add(this.txtHumidityInternal);
@@ -1761,11 +1761,101 @@
             this.chartPressure.Series.Add(series5);
             this.chartPressure.Series.Add(series6);
             this.chartPressure.Size = new System.Drawing.Size(488, 174);
-            this.chartPressure.TabIndex = 63;
+            this.chartPressure.TabIndex = 71;
             this.chartPressure.Text = "chartFreq";
             title3.Name = "Title1";
             title3.Text = "Pressure";
             this.chartPressure.Titles.Add(title3);
+            // 
+            // metroLabel30
+            // 
+            this.metroLabel30.AutoSize = true;
+            this.metroLabel30.Location = new System.Drawing.Point(0, 252);
+            this.metroLabel30.Margin = new System.Windows.Forms.Padding(3);
+            this.metroLabel30.Name = "metroLabel30";
+            this.metroLabel30.Size = new System.Drawing.Size(109, 19);
+            this.metroLabel30.TabIndex = 70;
+            this.metroLabel30.Text = "Temperature [C]:";
+            // 
+            // metroLabel29
+            // 
+            this.metroLabel29.AutoSize = true;
+            this.metroLabel29.Location = new System.Drawing.Point(0, 431);
+            this.metroLabel29.Margin = new System.Windows.Forms.Padding(3);
+            this.metroLabel29.Name = "metroLabel29";
+            this.metroLabel29.Size = new System.Drawing.Size(94, 19);
+            this.metroLabel29.TabIndex = 69;
+            this.metroLabel29.Text = "Pressure [kPa]:";
+            // 
+            // txtTempInternal
+            // 
+            this.txtTempInternal.Enabled = false;
+            this.txtTempInternal.Lines = new string[0];
+            this.txtTempInternal.Location = new System.Drawing.Point(118, 252);
+            this.txtTempInternal.MaxLength = 32767;
+            this.txtTempInternal.Name = "txtTempInternal";
+            this.txtTempInternal.PasswordChar = '\0';
+            this.txtTempInternal.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtTempInternal.SelectedText = "";
+            this.txtTempInternal.Size = new System.Drawing.Size(81, 22);
+            this.txtTempInternal.TabIndex = 68;
+            this.txtTempInternal.UseSelectable = true;
+            // 
+            // txtPressureInternal
+            // 
+            this.txtPressureInternal.Enabled = false;
+            this.txtPressureInternal.Lines = new string[0];
+            this.txtPressureInternal.Location = new System.Drawing.Point(118, 431);
+            this.txtPressureInternal.MaxLength = 32767;
+            this.txtPressureInternal.Name = "txtPressureInternal";
+            this.txtPressureInternal.PasswordChar = '\0';
+            this.txtPressureInternal.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtPressureInternal.SelectedText = "";
+            this.txtPressureInternal.Size = new System.Drawing.Size(81, 22);
+            this.txtPressureInternal.TabIndex = 67;
+            this.txtPressureInternal.UseSelectable = true;
+            // 
+            // txtHumidityExternal
+            // 
+            this.txtHumidityExternal.Enabled = false;
+            this.txtHumidityExternal.Lines = new string[0];
+            this.txtHumidityExternal.Location = new System.Drawing.Point(228, 76);
+            this.txtHumidityExternal.MaxLength = 32767;
+            this.txtHumidityExternal.Name = "txtHumidityExternal";
+            this.txtHumidityExternal.PasswordChar = '\0';
+            this.txtHumidityExternal.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtHumidityExternal.SelectedText = "";
+            this.txtHumidityExternal.Size = new System.Drawing.Size(81, 22);
+            this.txtHumidityExternal.TabIndex = 66;
+            this.txtHumidityExternal.UseSelectable = true;
+            // 
+            // txtTempExternal
+            // 
+            this.txtTempExternal.Enabled = false;
+            this.txtTempExternal.Lines = new string[0];
+            this.txtTempExternal.Location = new System.Drawing.Point(228, 252);
+            this.txtTempExternal.MaxLength = 32767;
+            this.txtTempExternal.Name = "txtTempExternal";
+            this.txtTempExternal.PasswordChar = '\0';
+            this.txtTempExternal.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtTempExternal.SelectedText = "";
+            this.txtTempExternal.Size = new System.Drawing.Size(81, 22);
+            this.txtTempExternal.TabIndex = 65;
+            this.txtTempExternal.UseSelectable = true;
+            // 
+            // txtPressureExternal
+            // 
+            this.txtPressureExternal.Enabled = false;
+            this.txtPressureExternal.Lines = new string[0];
+            this.txtPressureExternal.Location = new System.Drawing.Point(228, 431);
+            this.txtPressureExternal.MaxLength = 32767;
+            this.txtPressureExternal.Name = "txtPressureExternal";
+            this.txtPressureExternal.PasswordChar = '\0';
+            this.txtPressureExternal.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtPressureExternal.SelectedText = "";
+            this.txtPressureExternal.Size = new System.Drawing.Size(81, 22);
+            this.txtPressureExternal.TabIndex = 64;
+            this.txtPressureExternal.UseSelectable = true;
             // 
             // metroLabel27
             // 
@@ -1835,7 +1925,7 @@
             this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage3.Name = "metroTabPage3";
             this.metroTabPage3.Padding = new System.Windows.Forms.Padding(25);
-            this.metroTabPage3.Size = new System.Drawing.Size(834, 535);
+            this.metroTabPage3.Size = new System.Drawing.Size(834, 544);
             this.metroTabPage3.TabIndex = 2;
             this.metroTabPage3.Text = "Video && Pictures";
             this.metroTabPage3.VerticalScrollbar = true;
@@ -1957,102 +2047,12 @@
             this.metroTabPage8.HorizontalScrollbarSize = 10;
             this.metroTabPage8.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage8.Name = "metroTabPage8";
-            this.metroTabPage8.Size = new System.Drawing.Size(834, 535);
+            this.metroTabPage8.Size = new System.Drawing.Size(834, 544);
             this.metroTabPage8.TabIndex = 9;
             this.metroTabPage8.Text = "Debug";
             this.metroTabPage8.VerticalScrollbarBarColor = true;
             this.metroTabPage8.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage8.VerticalScrollbarSize = 10;
-            // 
-            // txtPressureExternal
-            // 
-            this.txtPressureExternal.Enabled = false;
-            this.txtPressureExternal.Lines = new string[0];
-            this.txtPressureExternal.Location = new System.Drawing.Point(228, 431);
-            this.txtPressureExternal.MaxLength = 32767;
-            this.txtPressureExternal.Name = "txtPressureExternal";
-            this.txtPressureExternal.PasswordChar = '\0';
-            this.txtPressureExternal.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtPressureExternal.SelectedText = "";
-            this.txtPressureExternal.Size = new System.Drawing.Size(81, 22);
-            this.txtPressureExternal.TabIndex = 64;
-            this.txtPressureExternal.UseSelectable = true;
-            // 
-            // txtTempExternal
-            // 
-            this.txtTempExternal.Enabled = false;
-            this.txtTempExternal.Lines = new string[0];
-            this.txtTempExternal.Location = new System.Drawing.Point(228, 252);
-            this.txtTempExternal.MaxLength = 32767;
-            this.txtTempExternal.Name = "txtTempExternal";
-            this.txtTempExternal.PasswordChar = '\0';
-            this.txtTempExternal.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtTempExternal.SelectedText = "";
-            this.txtTempExternal.Size = new System.Drawing.Size(81, 22);
-            this.txtTempExternal.TabIndex = 65;
-            this.txtTempExternal.UseSelectable = true;
-            // 
-            // txtHumidityExternal
-            // 
-            this.txtHumidityExternal.Enabled = false;
-            this.txtHumidityExternal.Lines = new string[0];
-            this.txtHumidityExternal.Location = new System.Drawing.Point(228, 76);
-            this.txtHumidityExternal.MaxLength = 32767;
-            this.txtHumidityExternal.Name = "txtHumidityExternal";
-            this.txtHumidityExternal.PasswordChar = '\0';
-            this.txtHumidityExternal.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtHumidityExternal.SelectedText = "";
-            this.txtHumidityExternal.Size = new System.Drawing.Size(81, 22);
-            this.txtHumidityExternal.TabIndex = 66;
-            this.txtHumidityExternal.UseSelectable = true;
-            // 
-            // txtPressureInternal
-            // 
-            this.txtPressureInternal.Enabled = false;
-            this.txtPressureInternal.Lines = new string[0];
-            this.txtPressureInternal.Location = new System.Drawing.Point(118, 431);
-            this.txtPressureInternal.MaxLength = 32767;
-            this.txtPressureInternal.Name = "txtPressureInternal";
-            this.txtPressureInternal.PasswordChar = '\0';
-            this.txtPressureInternal.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtPressureInternal.SelectedText = "";
-            this.txtPressureInternal.Size = new System.Drawing.Size(81, 22);
-            this.txtPressureInternal.TabIndex = 67;
-            this.txtPressureInternal.UseSelectable = true;
-            // 
-            // txtTempInternal
-            // 
-            this.txtTempInternal.Enabled = false;
-            this.txtTempInternal.Lines = new string[0];
-            this.txtTempInternal.Location = new System.Drawing.Point(118, 252);
-            this.txtTempInternal.MaxLength = 32767;
-            this.txtTempInternal.Name = "txtTempInternal";
-            this.txtTempInternal.PasswordChar = '\0';
-            this.txtTempInternal.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtTempInternal.SelectedText = "";
-            this.txtTempInternal.Size = new System.Drawing.Size(81, 22);
-            this.txtTempInternal.TabIndex = 68;
-            this.txtTempInternal.UseSelectable = true;
-            // 
-            // metroLabel29
-            // 
-            this.metroLabel29.AutoSize = true;
-            this.metroLabel29.Location = new System.Drawing.Point(0, 431);
-            this.metroLabel29.Margin = new System.Windows.Forms.Padding(3);
-            this.metroLabel29.Name = "metroLabel29";
-            this.metroLabel29.Size = new System.Drawing.Size(94, 19);
-            this.metroLabel29.TabIndex = 69;
-            this.metroLabel29.Text = "Pressure [kPa]:";
-            // 
-            // metroLabel30
-            // 
-            this.metroLabel30.AutoSize = true;
-            this.metroLabel30.Location = new System.Drawing.Point(0, 252);
-            this.metroLabel30.Margin = new System.Windows.Forms.Padding(3);
-            this.metroLabel30.Name = "metroLabel30";
-            this.metroLabel30.Size = new System.Drawing.Size(109, 19);
-            this.metroLabel30.TabIndex = 70;
-            this.metroLabel30.Text = "Temperature [C]:";
             // 
             // txtTemp
             // 
@@ -2243,7 +2243,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel28;
         private MetroFramework.Controls.MetroTextBox txtHumidityInternal;
         private MetroFramework.Controls.MetroLabel metroLabel26;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartPressure;
         private MetroFramework.Controls.MetroLabel metroLabel30;
         private MetroFramework.Controls.MetroLabel metroLabel29;
         private MetroFramework.Controls.MetroTextBox txtTempInternal;
@@ -2251,6 +2250,7 @@
         private MetroFramework.Controls.MetroTextBox txtHumidityExternal;
         private MetroFramework.Controls.MetroTextBox txtTempExternal;
         private MetroFramework.Controls.MetroTextBox txtPressureExternal;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartPressure;
     }
 }
 

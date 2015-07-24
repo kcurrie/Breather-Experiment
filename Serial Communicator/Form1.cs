@@ -392,19 +392,18 @@ namespace Serial_Comm
 
                     //Plot data on charts
                     //If over the end data point count remove points from the beginning of graph
-                    if (chartTemp.Series[0].Points.Count > 150)
-                    {
-                        for (int i = 0; i < 1; i++) { chartTemp.Series[i].Points.RemoveAt(0); }
-                    }
                     if (chartHumidity.Series[0].Points.Count > 150)
                     {
                         for (int i = 0; i < 1; i++) { chartHumidity.Series[i].Points.RemoveAt(0); }
+                    }
+                    if (chartTemp.Series[0].Points.Count > 150)
+                    {
+                        for (int i = 0; i < 1; i++) { chartTemp.Series[i].Points.RemoveAt(0); }
                     }
                     if (chartPressure.Series[0].Points.Count > 150)
                     {
                         for (int i = 0; i < 1; i++) { chartPressure.Series[i].Points.RemoveAt(0); }
                     }
-
                     //graph and display values
                     chartHumidity.Series[0].Points.AddY(currentData["humidity"]);
                     chartTemp.Series[0].Points.AddY(currentData["temp_h"]);
@@ -417,6 +416,10 @@ namespace Serial_Comm
                     chartHumidity.ResetAutoValues();
                     chartTemp.ResetAutoValues();
                     chartPressure.ResetAutoValues();
+
+                     
+                     //chartPressure.ChartAreas[0].RecalculateAxesScale();
+                     
                 }
             }
             
@@ -448,18 +451,19 @@ namespace Serial_Comm
 
                     //Plot data on charts
                     //If over the end data point count remove points from the beginning of graph
-                    if (chartTemp.Series[1].Points.Count > 150)
-                    {
-                        for (int i = 0; i < 1; i++) { chartTemp.Series[i].Points.RemoveAt(0); }
-                    }
                     if (chartHumidity.Series[1].Points.Count > 150)
                     {
                         for (int i = 0; i < 1; i++) { chartHumidity.Series[i].Points.RemoveAt(0); }
+                    }
+                    if (chartTemp.Series[1].Points.Count > 150)
+                    {
+                        for (int i = 0; i < 1; i++) { chartTemp.Series[i].Points.RemoveAt(0); }
                     }
                     if (chartPressure.Series[1].Points.Count > 150)
                     {
                         for (int i = 0; i < 1; i++) { chartPressure.Series[i].Points.RemoveAt(0); }
                     }
+                     
                     //graph and display values
                     chartHumidity.Series[1].Points.AddY(currentData["humidity"]);
                     chartTemp.Series[1].Points.AddY(currentData["temp_h"]);
@@ -468,11 +472,9 @@ namespace Serial_Comm
                     txtTempExternal.Text = currentData["temp_h"].ToString();
                     txtPressureExternal.Text = currentData["pressure"].ToString();
 
-                    //reset graph axes
                     chartHumidity.ResetAutoValues();
                     chartTemp.ResetAutoValues();
                     chartPressure.ResetAutoValues();
-
                 }
 
 
