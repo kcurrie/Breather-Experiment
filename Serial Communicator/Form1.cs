@@ -428,11 +428,9 @@ namespace Serial_Comm
                     serialQueue1.TryDequeue(out data);
                     //Save error count
                     MySheet.Cells[lastRow1, j] = errorCount;
-
+                    //Fix time
+                    MySheet.Cells[lastRow1,1] = DateTime.Now;
                     
-
-                    //Adjust or convert data as needed
-
 
 
                     //Plot data on charts
@@ -443,35 +441,8 @@ namespace Serial_Comm
                     txtTempInternal.Text = currentData["Temp_h"].ToString();
                     txtPressureInternal.Text = currentData["Pressure"].ToString();
 
-                    /*
-                    //If over the end data point count remove points from the beginning of graph
-                    if (chartHumidity.Series[0].Points.Count > 150)
-                    {
-                        for (int i = 0; i < 1; i++) { chartHumidity.Series[i].Points.RemoveAt(0); }
-                    }
-                    if (chartTemp.Series[0].Points.Count > 150)
-                    {
-                        for (int i = 0; i < 1; i++) { chartTemp.Series[i].Points.RemoveAt(0); }
-                    }
-                    if (chartPressure.Series[0].Points.Count > 150)
-                    {
-                        for (int i = 0; i < 1; i++) { chartPressure.Series[i].Points.RemoveAt(0); }
-                    }
-                    //graph and display values
-                    chartHumidity.Series[0].Points.AddY(currentData["Humidity"]);
-                    chartTemp.Series[0].Points.AddY(currentData["Temp_h"]);
-                    chartPressure.Series[0].Points.AddY(currentData["Pressure"]);
-                    txtHumidityInternal.Text = currentData["Humidity"].ToString();
-                    txtTempInternal.Text = currentData["Temp_h"].ToString();
-                    txtPressureInternal.Text = currentData["Pressure"].ToString();
-
-                    //reset graph axes
-                    chartHumidity.ResetAutoValues();
-                    chartTemp.ResetAutoValues();
-                    chartPressure.ResetAutoValues();
-
-                     */
-                     //chartPressure.ChartAreas[0].RecalculateAxesScale();
+                    
+                     chartPressure.ChartAreas[0].RecalculateAxesScale();
                      
                 }
             }
@@ -491,15 +462,24 @@ namespace Serial_Comm
                     List<string> keys = new List<string>(currentData.Keys);
                     foreach (var key in keys)
                     {
-                        serialQueue2.TryDequeue(out data);      //Remove data from queue
-                        currentData[key] = data;                //Put data in its respective key
+                        serialQueue2.TryDequeue(out data);      //Remove data from queue                     
+                        if (data != 0)                          //Filter data: if =0, reuse last value for that key
+                        {
+                            currentData[key] = data;            //Put data in its respective key
+                        }
+                        else
+                        {
+                            errorCount++;              //Count how many errors are in this packet
+                        }
                         MySheet.Cells[lastRow2, j] = currentData[key];   //Put data in excel sheet
                         j++;    //Update current row in excel sheet
                     }
                     //Remove exit byte
                     serialQueue2.TryDequeue(out data);
-
-                    //Adjust or convert data as needed
+                    //Save error count
+                    MySheet.Cells[lastRow2, j] = errorCount;
+                    //Fix time
+                    MySheet.Cells[lastRow2, currentData.Count()+1 + extraColumns] = DateTime.Now;
 
                     
                     //Plot data on charts
@@ -508,35 +488,7 @@ namespace Serial_Comm
                     //Display data text
                     txtHumidityExternal.Text = currentData["Humidity"].ToString();
                     txtTempExternal.Text = currentData["Temp_h"].ToString();
-                    txtPressureExternal.Text = currentData["Pressure"].ToString();
-                    
-                    /*
-                    //If over the end data point count remove points from the beginning of graph
-                    if (chartHumidity.Series[1].Points.Count > 150)
-                    {
-                        for (int i = 0; i < 1; i++) { chartHumidity.Series[i].Points.RemoveAt(0); }
-                    }
-                    if (chartTemp.Series[1].Points.Count > 150)
-                    {
-                        for (int i = 0; i < 1; i++) { chartTemp.Series[i].Points.RemoveAt(0); }
-                    }
-                    if (chartPressure.Series[1].Points.Count > 150)
-                    {
-                        for (int i = 0; i < 1; i++) { chartPressure.Series[i].Points.RemoveAt(0); }
-                    }
-                     
-                    //graph and display values
-                    chartHumidity.Series[1].Points.AddY(currentData["Humidity"]);
-                    chartTemp.Series[1].Points.AddY(currentData["Temp_h"]);
-                    chartPressure.Series[1].Points.AddY(currentData["Pressure"]);
-                    txtHumidityExternal.Text = currentData["Humidity"].ToString();
-                    txtTempExternal.Text = currentData["Temp_h"].ToString();
-                    txtPressureExternal.Text = currentData["Pressure"].ToString();
-
-                    chartHumidity.ResetAutoValues();
-                    chartTemp.ResetAutoValues();
-                    chartPressure.ResetAutoValues();
-                     * */
+                    txtPressureExternal.Text = currentData["Pressure"].ToString(); 
                 }
              
             }
@@ -545,7 +497,6 @@ namespace Serial_Comm
 
         private void plotData(int series)
         {
-            //Plot data on charts
             //If over the end data point count remove points from the beginning of graph
             if (chartHumidity.Series[series].Points.Count > 150)
             {
@@ -578,13 +529,15 @@ namespace Serial_Comm
             else
             {
                 tmrData.Enabled = false;
+                filename = dateTimeBox.Text + " - " + filename;
                 MyBook.SaveAs("C:\\Users\\KCURRIE\\Desktop\\Test\\" + filename + ".xlsx");
+                
                 MyBook.Close(0);
                 MyApp.Quit();
-
                 releaseObject(MySheet);
                 releaseObject(MyBook);
                 releaseObject(MyApp);
+                
                 MessageBox.Show("Excel File Saved");
             }
         }
@@ -592,14 +545,13 @@ namespace Serial_Comm
 
         private void btnSaveOnly_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Sorry, could not save");
-            
+           
             filename = txtFileName.Text;
             if (filename == "")
                 MessageBox.Show("Enter a File Name");
             else
             {
-                MessageBox.Show(filename);
+                filename = dateTimeBox.Text + " - " + filename;
                 MyBook.SaveAs("C:\\Users\\KCURRIE\\Desktop\\Test\\" + filename + ".xlsx");
                 MessageBox.Show("Excel File Saved");
             }
