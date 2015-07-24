@@ -331,23 +331,24 @@ namespace Serial_Comm
             //Format excel sheet
             MySheet.Cells[1, 1] = "Internal";
             MySheet.Cells[1, currentData.Count()+1 + extraColumns] = "External";
+            MySheet.Cells[2, 1] = "Notes:";
             
             int i = 1;
             foreach(var entry in currentData)
             {
                 string k = entry.Key;
-                MySheet.Cells[2, i] = k;
+                MySheet.Cells[3, i] = k;
                 i++;
             }
-            MySheet.Cells[2, i] = "Error";
+            MySheet.Cells[3, i] = "Error";
             i++;
             foreach (var entry in currentData)
             {
                 string k = entry.Key;
-                MySheet.Cells[2, i] = k;
+                MySheet.Cells[3, i] = k;
                 i++;
             }
-            MySheet.Cells[2, i] = "Error";
+            MySheet.Cells[3, i] = "Error";
             i++;
 
             //Setup row indexes
@@ -529,6 +530,12 @@ namespace Serial_Comm
             else
             {
                 tmrData.Enabled = false;
+             
+                MySheet.Cells[2, 2] = txtNotes.Text;        //Add notes to sheet    
+                MySheet.Range[MySheet.Cells[2, 2], MySheet.Cells[2, 9]].Merge();    //Merge cells used for note   
+                MySheet.Columns.AutoFit();
+               // MySheet.Rows.AutoFit();
+
                 filename = dateTimeBox.Text + " - " + filename;
                 MyBook.SaveAs("C:\\Users\\KCURRIE\\Desktop\\Test\\" + filename + ".xlsx");
                 

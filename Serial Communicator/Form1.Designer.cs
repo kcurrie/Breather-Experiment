@@ -342,6 +342,8 @@
             // 
             this.chartTemp.BorderlineColor = System.Drawing.Color.DeepSkyBlue;
             this.chartTemp.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            chartArea1.AxisX.Title = "Time [s]";
+            chartArea1.AxisY.Title = "Celsius";
             chartArea1.Name = "ChartArea1";
             this.chartTemp.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -369,6 +371,8 @@
             // 
             this.chartHumidity.BorderlineColor = System.Drawing.Color.DeepSkyBlue;
             this.chartHumidity.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            chartArea2.AxisX.Title = "Time [s]";
+            chartArea2.AxisY.Title = "%RH";
             chartArea2.Name = "ChartArea1";
             chartArea2.ShadowColor = System.Drawing.Color.White;
             this.chartHumidity.ChartAreas.Add(chartArea2);
@@ -532,7 +536,7 @@
             this.metroTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl2.Location = new System.Drawing.Point(20, 110);
             this.metroTabControl2.Name = "metroTabControl2";
-            this.metroTabControl2.SelectedIndex = 4;
+            this.metroTabControl2.SelectedIndex = 5;
             this.metroTabControl2.Size = new System.Drawing.Size(842, 586);
             this.metroTabControl2.TabIndex = 100;
             this.metroTabControl2.UseSelectable = true;
@@ -1617,6 +1621,8 @@
             // 
             this.chartPressure.BorderlineColor = System.Drawing.Color.DeepSkyBlue;
             this.chartPressure.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            chartArea3.AxisX.Title = "Time [s]";
+            chartArea3.AxisY.Title = "kPa";
             chartArea3.Name = "ChartArea1";
             this.chartPressure.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
