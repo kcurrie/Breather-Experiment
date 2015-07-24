@@ -1,6 +1,6 @@
 ﻿namespace Serial_Comm
 {
-    partial class txtTemp
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,25 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(txtTemp));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title6 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.cmbComPort1 = new System.Windows.Forms.ToolStripComboBox();
@@ -63,17 +63,6 @@
             this.lblBytesToRead = new System.Windows.Forms.Label();
             this.txtBytesInQueue = new System.Windows.Forms.TextBox();
             this.txtBytesToRead = new System.Windows.Forms.TextBox();
-            this.txtExit = new System.Windows.Forms.TextBox();
-            this.txtInputByte2 = new System.Windows.Forms.TextBox();
-            this.txtInputByte1 = new System.Windows.Forms.TextBox();
-            this.txtCommand = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtCommandByte = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.txtRawSerial1 = new System.Windows.Forms.TextBox();
             this.chartTemp = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartHumidity = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -86,7 +75,7 @@
             this.txtBaudRate2 = new System.Windows.Forms.ToolStripTextBox();
             this.btnConnect2 = new System.Windows.Forms.ToolStripButton();
             this.serialPort2 = new System.IO.Ports.SerialPort(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtPackets2 = new System.Windows.Forms.TextBox();
             this.btnClearHistory2 = new System.Windows.Forms.Button();
             this.chkShowResponse2 = new System.Windows.Forms.CheckBox();
             this.lblIncomingDataRate2 = new System.Windows.Forms.Label();
@@ -340,122 +329,6 @@
             this.txtBytesToRead.Size = new System.Drawing.Size(100, 23);
             this.txtBytesToRead.TabIndex = 26;
             // 
-            // txtExit
-            // 
-            this.txtExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtExit.Location = new System.Drawing.Point(358, 417);
-            this.txtExit.Name = "txtExit";
-            this.txtExit.ReadOnly = true;
-            this.txtExit.Size = new System.Drawing.Size(76, 26);
-            this.txtExit.TabIndex = 35;
-            this.txtExit.Visible = false;
-            // 
-            // txtInputByte2
-            // 
-            this.txtInputByte2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInputByte2.Location = new System.Drawing.Point(358, 389);
-            this.txtInputByte2.Name = "txtInputByte2";
-            this.txtInputByte2.ReadOnly = true;
-            this.txtInputByte2.Size = new System.Drawing.Size(76, 26);
-            this.txtInputByte2.TabIndex = 36;
-            this.txtInputByte2.Visible = false;
-            // 
-            // txtInputByte1
-            // 
-            this.txtInputByte1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInputByte1.Location = new System.Drawing.Point(358, 361);
-            this.txtInputByte1.Name = "txtInputByte1";
-            this.txtInputByte1.ReadOnly = true;
-            this.txtInputByte1.Size = new System.Drawing.Size(76, 26);
-            this.txtInputByte1.TabIndex = 37;
-            this.txtInputByte1.Visible = false;
-            // 
-            // txtCommand
-            // 
-            this.txtCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCommand.Location = new System.Drawing.Point(358, 333);
-            this.txtCommand.Name = "txtCommand";
-            this.txtCommand.ReadOnly = true;
-            this.txtCommand.Size = new System.Drawing.Size(76, 26);
-            this.txtCommand.TabIndex = 38;
-            this.txtCommand.Visible = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(240, 274);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 20);
-            this.label3.TabIndex = 40;
-            this.label3.Text = "Output:";
-            this.label3.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(238, 336);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 20);
-            this.label5.TabIndex = 47;
-            this.label5.Text = "Command";
-            this.label5.Visible = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(240, 423);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 20);
-            this.label6.TabIndex = 48;
-            this.label6.Text = "Exit";
-            this.label6.Visible = false;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(240, 392);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 20);
-            this.label7.TabIndex = 49;
-            this.label7.Text = "Byte 2";
-            this.label7.Visible = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(240, 364);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 20);
-            this.label8.TabIndex = 50;
-            this.label8.Text = "Byte 1";
-            this.label8.Visible = false;
-            // 
-            // txtCommandByte
-            // 
-            this.txtCommandByte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCommandByte.Location = new System.Drawing.Point(358, 305);
-            this.txtCommandByte.Name = "txtCommandByte";
-            this.txtCommandByte.ReadOnly = true;
-            this.txtCommandByte.Size = new System.Drawing.Size(76, 26);
-            this.txtCommandByte.TabIndex = 39;
-            this.txtCommandByte.Visible = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(238, 308);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 20);
-            this.label4.TabIndex = 46;
-            this.label4.Text = "Command Byte";
-            this.label4.Visible = false;
-            // 
             // txtRawSerial1
             // 
             this.txtRawSerial1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -469,56 +342,56 @@
             // 
             this.chartTemp.BorderlineColor = System.Drawing.Color.DeepSkyBlue;
             this.chartTemp.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chartTemp.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartTemp.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            this.chartTemp.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartTemp.Legends.Add(legend4);
             this.chartTemp.Location = new System.Drawing.Point(346, 188);
             this.chartTemp.Name = "chartTemp";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Internal";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "External";
-            this.chartTemp.Series.Add(series1);
-            this.chartTemp.Series.Add(series2);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series7.Legend = "Legend1";
+            series7.Name = "Internal";
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.Legend = "Legend1";
+            series8.Name = "External";
+            this.chartTemp.Series.Add(series7);
+            this.chartTemp.Series.Add(series8);
             this.chartTemp.Size = new System.Drawing.Size(488, 174);
             this.chartTemp.TabIndex = 52;
             this.chartTemp.Text = "chartFreq";
-            title1.Name = "Title1";
-            title1.Text = "Temperature";
-            this.chartTemp.Titles.Add(title1);
+            title4.Name = "Title1";
+            title4.Text = "Temperature";
+            this.chartTemp.Titles.Add(title4);
             // 
             // chartHumidity
             // 
             this.chartHumidity.BorderlineColor = System.Drawing.Color.DeepSkyBlue;
             this.chartHumidity.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea2.Name = "ChartArea1";
-            chartArea2.ShadowColor = System.Drawing.Color.White;
-            this.chartHumidity.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartHumidity.Legends.Add(legend2);
+            chartArea5.Name = "ChartArea1";
+            chartArea5.ShadowColor = System.Drawing.Color.White;
+            this.chartHumidity.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chartHumidity.Legends.Add(legend5);
             this.chartHumidity.Location = new System.Drawing.Point(346, 8);
             this.chartHumidity.Name = "chartHumidity";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "Internal";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Legend = "Legend1";
-            series4.Name = "External";
-            this.chartHumidity.Series.Add(series3);
-            this.chartHumidity.Series.Add(series4);
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series9.Legend = "Legend1";
+            series9.Name = "Internal";
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series10.Legend = "Legend1";
+            series10.Name = "External";
+            this.chartHumidity.Series.Add(series9);
+            this.chartHumidity.Series.Add(series10);
             this.chartHumidity.Size = new System.Drawing.Size(488, 174);
             this.chartHumidity.TabIndex = 53;
             this.chartHumidity.Text = "Humidity";
-            title2.Name = "Humidity";
-            title2.Text = "Humidity";
-            this.chartHumidity.Titles.Add(title2);
+            title5.Name = "Humidity";
+            title5.Text = "Humidity";
+            this.chartHumidity.Titles.Add(title5);
             // 
             // btnClearHistory1
             // 
@@ -590,12 +463,12 @@
             // 
             this.serialPort2.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort2_DataReceived);
             // 
-            // textBox1
+            // txtPackets2
             // 
-            this.textBox1.Location = new System.Drawing.Point(379, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 81;
+            this.txtPackets2.Location = new System.Drawing.Point(379, 13);
+            this.txtPackets2.Name = "txtPackets2";
+            this.txtPackets2.Size = new System.Drawing.Size(100, 20);
+            this.txtPackets2.TabIndex = 81;
             // 
             // btnClearHistory2
             // 
@@ -659,7 +532,7 @@
             this.metroTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl2.Location = new System.Drawing.Point(20, 110);
             this.metroTabControl2.Name = "metroTabControl2";
-            this.metroTabControl2.SelectedIndex = 5;
+            this.metroTabControl2.SelectedIndex = 7;
             this.metroTabControl2.Size = new System.Drawing.Size(842, 586);
             this.metroTabControl2.TabIndex = 100;
             this.metroTabControl2.UseSelectable = true;
@@ -1556,24 +1429,24 @@
             this.metroGrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.metroGrid1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.metroGrid1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(211)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.metroGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(211)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.metroGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.metroGrid1.ColumnHeadersHeight = 30;
             this.metroGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(211)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.metroGrid1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(211)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.metroGrid1.DefaultCellStyle = dataGridViewCellStyle5;
             this.metroGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroGrid1.EnableHeadersVisualStyles = false;
             this.metroGrid1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -1582,14 +1455,14 @@
             this.metroGrid1.Location = new System.Drawing.Point(0, 5);
             this.metroGrid1.Name = "metroGrid1";
             this.metroGrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(211)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.metroGrid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(211)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.metroGrid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.metroGrid1.RowHeadersVisible = false;
             this.metroGrid1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.metroGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1744,28 +1617,28 @@
             // 
             this.chartPressure.BorderlineColor = System.Drawing.Color.DeepSkyBlue;
             this.chartPressure.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea3.Name = "ChartArea1";
-            this.chartPressure.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartPressure.Legends.Add(legend3);
+            chartArea6.Name = "ChartArea1";
+            this.chartPressure.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.chartPressure.Legends.Add(legend6);
             this.chartPressure.Location = new System.Drawing.Point(346, 368);
             this.chartPressure.Name = "chartPressure";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Legend = "Legend1";
-            series5.Name = "Internal";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.Legend = "Legend1";
-            series6.Name = "External";
-            this.chartPressure.Series.Add(series5);
-            this.chartPressure.Series.Add(series6);
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series11.Legend = "Legend1";
+            series11.Name = "Internal";
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series12.Legend = "Legend1";
+            series12.Name = "External";
+            this.chartPressure.Series.Add(series11);
+            this.chartPressure.Series.Add(series12);
             this.chartPressure.Size = new System.Drawing.Size(488, 174);
             this.chartPressure.TabIndex = 71;
             this.chartPressure.Text = "chartFreq";
-            title3.Name = "Title1";
-            title3.Text = "Pressure";
-            this.chartPressure.Titles.Add(title3);
+            title6.Name = "Title1";
+            title6.Text = "Pressure";
+            this.chartPressure.Titles.Add(title6);
             // 
             // metroLabel30
             // 
@@ -2017,27 +1890,16 @@
             // 
             // metroTabPage8
             // 
-            this.metroTabPage8.Controls.Add(this.label8);
             this.metroTabPage8.Controls.Add(this.txtRawSerial1);
-            this.metroTabPage8.Controls.Add(this.label7);
             this.metroTabPage8.Controls.Add(this.chkShowResponse1);
-            this.metroTabPage8.Controls.Add(this.label6);
             this.metroTabPage8.Controls.Add(this.btnClearHistory1);
-            this.metroTabPage8.Controls.Add(this.label5);
             this.metroTabPage8.Controls.Add(this.txtPackets);
-            this.metroTabPage8.Controls.Add(this.label4);
             this.metroTabPage8.Controls.Add(this.lblIncomingDataRate1);
-            this.metroTabPage8.Controls.Add(this.label3);
-            this.metroTabPage8.Controls.Add(this.txtExit);
             this.metroTabPage8.Controls.Add(this.txtRawSerial2);
-            this.metroTabPage8.Controls.Add(this.txtInputByte2);
             this.metroTabPage8.Controls.Add(this.lblIncomingDataRate2);
-            this.metroTabPage8.Controls.Add(this.txtInputByte1);
             this.metroTabPage8.Controls.Add(this.chkShowResponse2);
-            this.metroTabPage8.Controls.Add(this.txtCommand);
             this.metroTabPage8.Controls.Add(this.btnClearHistory2);
-            this.metroTabPage8.Controls.Add(this.txtCommandByte);
-            this.metroTabPage8.Controls.Add(this.textBox1);
+            this.metroTabPage8.Controls.Add(this.txtPackets2);
             this.metroTabPage8.Controls.Add(this.txtBytesToRead);
             this.metroTabPage8.Controls.Add(this.txtBytesInQueue);
             this.metroTabPage8.Controls.Add(this.lblBytesToRead);
@@ -2054,7 +1916,7 @@
             this.metroTabPage8.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage8.VerticalScrollbarSize = 10;
             // 
-            // txtTemp
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -2062,7 +1924,7 @@
             this.Controls.Add(this.metroTabControl2);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "txtTemp";
+            this.Name = "MainForm";
             this.Text = "Breather Test Interface";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -2112,17 +1974,6 @@
         private System.Windows.Forms.Label lblBytesToRead;
         private System.Windows.Forms.TextBox txtBytesInQueue;
         private System.Windows.Forms.TextBox txtBytesToRead;
-        private System.Windows.Forms.TextBox txtExit;
-        private System.Windows.Forms.TextBox txtInputByte2;
-        private System.Windows.Forms.TextBox txtInputByte1;
-        private System.Windows.Forms.TextBox txtCommand;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtCommandByte;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtRawSerial1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartTemp;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartHumidity;
@@ -2134,7 +1985,7 @@
         private System.Windows.Forms.ToolStripTextBox txtBaudRate2;
         private System.Windows.Forms.ToolStripButton btnConnect2;
         private System.IO.Ports.SerialPort serialPort2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPackets2;
         private System.Windows.Forms.Button btnClearHistory2;
         private System.Windows.Forms.CheckBox chkShowResponse2;
         private System.Windows.Forms.Label lblIncomingDataRate2;

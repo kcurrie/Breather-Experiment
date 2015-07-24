@@ -40,7 +40,7 @@ namespace Serial_Comm
         Yellow
     }
 
-    public partial class txtTemp : MetroForm
+    public partial class MainForm : MetroForm
     {
         //Excel variables
         private static Excel.Workbook MyBook = null;
@@ -50,22 +50,30 @@ namespace Serial_Comm
         string filename;
         int lastRow1 = 1;
         int lastRow2 = 1;
+        int extraColumns = 1;       //How many additional data columns there are after data from sensors
 
+        //Communication variables
         ConcurrentQueue<int> serialQueue1 = new ConcurrentQueue<int>();
         ConcurrentQueue<int> serialQueue2 = new ConcurrentQueue<int>();
-        private string[] commandList = { "Error", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Encoder" };
+        //private string[] commandList = { "Error", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Encoder" };
         Dictionary<string, int> currentData = new Dictionary<string,int>{
-            {"time", 0},
-            {"humidity", 0},
-            {"temp_h", 0}, 
-            {"temp_p", 0}, 
-            {"pressure", 0}, 
-            {"dewpt", 0}, 
-            {"batt_lvl", 11}, 
+            {"Time", 0},
+            {"Humidity", 0},
+            {"Temp_h", 0}, 
+            {"Temp_p", 0}, 
+            {"Pressure", 0}, 
+            {"DewPT", 0}, 
+            {"Battery", 11}, 
+            {"Conversion",0},
         };
-        int packetCount = 0;
+        int packetCount1 = 0;
+        int packetCount2 = 0;
         int startByte = 255;
-    /*
+        int errorCount = 0;
+        public int numberOfDataPoints1 = 0;
+        public int numberOfDataPoints2 = 0;    
+        
+        /*
         double humidity = 0; // [%]
         double temp_p = 0; // [temperature from humidity sensor - Fahrenheit]
         double temp_h = 0;  //[temperature from humidity sensor - Celsius]
@@ -74,7 +82,7 @@ namespace Serial_Comm
         double batt_lvl = 11.8; //[analog value from 0 to 1023]
      * */
 
-
+        /*
         int commandByte, dataByte1, dataByte2, exitByte;
         double currentRPM, currentFrequency;
         int currentDirection;
@@ -86,12 +94,12 @@ namespace Serial_Comm
         int positionDataIterator = 0;
         int previousPosition = 0;
         bool recordPosition = false;    //true when we want to record the position data
+        */
 
-        public int numberOfDataPoints = 0;
 
         
         /////////////////////////////////
-        public txtTemp()
+        public MainForm()
         {
             InitializeComponent();
             //this.StyleManager = this.msmMain; msmMain is the name of stylemanager;
@@ -144,6 +152,7 @@ namespace Serial_Comm
         private void Form1_Load(object sender, EventArgs e)
         {
             lblIncomingDataRate1.Visible = false;
+            lblIncomingDataRate2.Visible = false;
             chkShowResponse1.Checked = true;
             chkShowResponse2.Checked = true;
             ComPortUpdate();
@@ -243,7 +252,7 @@ namespace Serial_Comm
                         serialPort2.Open();
                         btnConnect2.Text = "Disconnect";
                         timer1.Enabled = true;
-                        lblIncomingDataRate1.Visible = true;
+                        lblIncomingDataRate2.Visible = true;
                     }
                     catch (Exception ex)
                     {
@@ -258,7 +267,7 @@ namespace Serial_Comm
                     serialPort2.Close();
                     btnConnect2.Text = "Connect";
                     timer1.Enabled = false;
-                    lblIncomingDataRate1.Visible = false;
+                    lblIncomingDataRate2.Visible = false;
                 }
                 catch (Exception ex)
                 {
@@ -296,6 +305,11 @@ namespace Serial_Comm
 
             tmrData.Enabled = true;         //Start reading data
             startExcel();
+            
+            //Clear old data from serial queue so that experiment starts at this time
+            int data;
+            while (serialQueue1.TryDequeue(out data)) ; //keep dequeueing, do nothing with data
+            while (serialQueue2.TryDequeue(out data)) ; //keep dequeueing, do nothing with data
 
         }
 
@@ -314,8 +328,29 @@ namespace Serial_Comm
             {
                 MessageBox.Show(Ex.Message);
             }
+            //Format excel sheet
+            MySheet.Cells[1, 1] = "Internal";
+            MySheet.Cells[1, currentData.Count()+1 + extraColumns] = "External";
             
-            //Setup row indexers
+            int i = 1;
+            foreach(var entry in currentData)
+            {
+                string k = entry.Key;
+                MySheet.Cells[2, i] = k;
+                i++;
+            }
+            MySheet.Cells[2, i] = "Error";
+            i++;
+            foreach (var entry in currentData)
+            {
+                string k = entry.Key;
+                MySheet.Cells[2, i] = k;
+                i++;
+            }
+            MySheet.Cells[2, i] = "Error";
+            i++;
+
+            //Setup row indexes
             lastRow1 = MySheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Row;
             lastRow2 = MySheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Row;
         }
@@ -325,7 +360,7 @@ namespace Serial_Comm
             while (serialPort1.IsOpen && serialPort1.BytesToRead != 0)
             {
                 int currentByte = serialPort1.ReadByte();
-                numberOfDataPoints++;
+                numberOfDataPoints1++;
                 if (chkShowResponse1.Checked)
                     this.BeginInvoke(new EventHandler(delegate
                     {
@@ -340,7 +375,7 @@ namespace Serial_Comm
             while (serialPort2.IsOpen && serialPort2.BytesToRead != 0)
             {
                 int currentByte = serialPort2.ReadByte();
-                numberOfDataPoints++;
+                numberOfDataPoints2++;
                 if (chkShowResponse2.Checked)
                     this.BeginInvoke(new EventHandler(delegate
                     {
@@ -360,17 +395,15 @@ namespace Serial_Comm
                 txtBytesToRead.Text = serialPort1.BytesToRead.ToString();
             txtBytesInQueue.Text = serialQueue1.Count.ToString();
 
-
-
             while (serialQueue1.Count > 2)
             {
                 data = 0;
-
+                errorCount = 0;
                 serialQueue1.TryDequeue(out data);
                 if (data == startByte)
                 {
-                    packetCount++;
-                    txtPackets.Text = packetCount.ToString();
+                    packetCount1++;
+                    txtPackets.Text = packetCount1.ToString();
 
                     //Dequeue data packet into current data dictionary
                     //and add data to excel sheet
@@ -380,17 +413,37 @@ namespace Serial_Comm
                     foreach (var key in keys)
                     {
                         serialQueue1.TryDequeue(out data);      //Remove data from queue
-                        currentData[key] = data;                //Put data in its respective key
+                        if (data != 0)                          //Filter data: if =0, reuse last value for that key
+                        {
+                            currentData[key] = data;            //Put data in its respective key
+                        }
+                        else
+                        {
+                           errorCount++;              //Count how many errors are in this packet
+                        }
                         MySheet.Cells[lastRow1, j] = currentData[key];   //Put data in excel sheet
                         j++;    //Update current row in excel sheet
                     }
                     //Remove exit byte
                     serialQueue1.TryDequeue(out data);
+                    //Save error count
+                    MySheet.Cells[lastRow1, j] = errorCount;
+
+                    
 
                     //Adjust or convert data as needed
 
 
+
                     //Plot data on charts
+                    plotData(0);    //Plot data in series 0, internal
+
+                    //Display data text
+                    txtHumidityInternal.Text = currentData["Humidity"].ToString();
+                    txtTempInternal.Text = currentData["Temp_h"].ToString();
+                    txtPressureInternal.Text = currentData["Pressure"].ToString();
+
+                    /*
                     //If over the end data point count remove points from the beginning of graph
                     if (chartHumidity.Series[0].Points.Count > 150)
                     {
@@ -405,19 +458,19 @@ namespace Serial_Comm
                         for (int i = 0; i < 1; i++) { chartPressure.Series[i].Points.RemoveAt(0); }
                     }
                     //graph and display values
-                    chartHumidity.Series[0].Points.AddY(currentData["humidity"]);
-                    chartTemp.Series[0].Points.AddY(currentData["temp_h"]);
-                    chartPressure.Series[0].Points.AddY(currentData["pressure"]);
-                    txtHumidityInternal.Text = currentData["humidity"].ToString();
-                    txtTempInternal.Text = currentData["temp_h"].ToString();
-                    txtPressureInternal.Text = currentData["pressure"].ToString();
+                    chartHumidity.Series[0].Points.AddY(currentData["Humidity"]);
+                    chartTemp.Series[0].Points.AddY(currentData["Temp_h"]);
+                    chartPressure.Series[0].Points.AddY(currentData["Pressure"]);
+                    txtHumidityInternal.Text = currentData["Humidity"].ToString();
+                    txtTempInternal.Text = currentData["Temp_h"].ToString();
+                    txtPressureInternal.Text = currentData["Pressure"].ToString();
 
                     //reset graph axes
                     chartHumidity.ResetAutoValues();
                     chartTemp.ResetAutoValues();
                     chartPressure.ResetAutoValues();
 
-                     
+                     */
                      //chartPressure.ChartAreas[0].RecalculateAxesScale();
                      
                 }
@@ -428,13 +481,13 @@ namespace Serial_Comm
                 serialQueue2.TryDequeue(out data);
                 if (data == startByte)
                 {
-                    packetCount++;
-                    txtPackets.Text = packetCount.ToString();
+                    packetCount2++;
+                    txtPackets2.Text = packetCount2.ToString();
 
                     //Dequeue data packet into current data dictionary
                     //and add data to excel sheet
                     lastRow2 += 1;
-                    int j = currentData.Count()+1;    //start putting data in excel sheet after columns used by first sensor set
+                    int j = currentData.Count()+1 + extraColumns;    //start putting data in excel sheet after columns used by first sensor set
                     List<string> keys = new List<string>(currentData.Keys);
                     foreach (var key in keys)
                     {
@@ -448,8 +501,16 @@ namespace Serial_Comm
 
                     //Adjust or convert data as needed
 
-
+                    
                     //Plot data on charts
+                    plotData(1);    //Plot data in series 1, External
+
+                    //Display data text
+                    txtHumidityExternal.Text = currentData["Humidity"].ToString();
+                    txtTempExternal.Text = currentData["Temp_h"].ToString();
+                    txtPressureExternal.Text = currentData["Pressure"].ToString();
+                    
+                    /*
                     //If over the end data point count remove points from the beginning of graph
                     if (chartHumidity.Series[1].Points.Count > 150)
                     {
@@ -465,26 +526,49 @@ namespace Serial_Comm
                     }
                      
                     //graph and display values
-                    chartHumidity.Series[1].Points.AddY(currentData["humidity"]);
-                    chartTemp.Series[1].Points.AddY(currentData["temp_h"]);
-                    chartPressure.Series[1].Points.AddY(currentData["pressure"]);
-                    txtHumidityExternal.Text = currentData["humidity"].ToString();
-                    txtTempExternal.Text = currentData["temp_h"].ToString();
-                    txtPressureExternal.Text = currentData["pressure"].ToString();
+                    chartHumidity.Series[1].Points.AddY(currentData["Humidity"]);
+                    chartTemp.Series[1].Points.AddY(currentData["Temp_h"]);
+                    chartPressure.Series[1].Points.AddY(currentData["Pressure"]);
+                    txtHumidityExternal.Text = currentData["Humidity"].ToString();
+                    txtTempExternal.Text = currentData["Temp_h"].ToString();
+                    txtPressureExternal.Text = currentData["Pressure"].ToString();
 
                     chartHumidity.ResetAutoValues();
                     chartTemp.ResetAutoValues();
                     chartPressure.ResetAutoValues();
+                     * */
                 }
-
-
-                    
-                
+             
             }
         
         }
 
+        private void plotData(int series)
+        {
+            //Plot data on charts
+            //If over the end data point count remove points from the beginning of graph
+            if (chartHumidity.Series[series].Points.Count > 150)
+            {
+                for (int i = 0; i < 1; i++) { chartHumidity.Series[i].Points.RemoveAt(0); }
+            }
+            if (chartTemp.Series[series].Points.Count > 150)
+            {
+                for (int i = 0; i < 1; i++) { chartTemp.Series[i].Points.RemoveAt(0); }
+            }
+            if (chartPressure.Series[series].Points.Count > 150)
+            {
+                for (int i = 0; i < 1; i++) { chartPressure.Series[i].Points.RemoveAt(0); }
+            }
 
+            //graph and display values
+            chartHumidity.Series[series].Points.AddY(currentData["Humidity"]);
+            chartTemp.Series[series].Points.AddY(currentData["Temp_h"]);
+            chartPressure.Series[series].Points.AddY(currentData["Pressure"]);
+
+            chartHumidity.ResetAutoValues();
+            chartTemp.ResetAutoValues();
+            chartPressure.ResetAutoValues();
+        }
 
         private void btnSaveData_Click_1(object sender, EventArgs e)
         {
@@ -558,8 +642,10 @@ namespace Serial_Comm
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lblIncomingDataRate1.Text = "Incoming data rate = " + numberOfDataPoints.ToString() + " bytes per second";
-            numberOfDataPoints = 0;
+            lblIncomingDataRate1.Text = "Incoming data rate = " + numberOfDataPoints1.ToString() + " bytes per second";
+            numberOfDataPoints1 = 0;
+            lblIncomingDataRate2.Text = "Incoming data rate = " + numberOfDataPoints2.ToString() + " bytes per second";
+            numberOfDataPoints2 = 0;
         }
 
         private void btnClearHistory_Click(object sender, EventArgs e)
@@ -582,12 +668,22 @@ namespace Serial_Comm
             {
                 serialPort2.Close();
             }
-            //Causes errors if no excel open. Leave this in Save and close button  only
-            /*
+
+            tmrData.Enabled = false;
+            try
+            { 
+                MyBook.Close(0);
+                MyApp.Quit();
+
                 releaseObject(MySheet);
                 releaseObject(MyBook);
                 releaseObject(MyApp);
-            */
+                MessageBox.Show("Excel closed without saving");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No excel sheet open");
+            }
            
             
 

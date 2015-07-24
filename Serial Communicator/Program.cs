@@ -15,7 +15,7 @@ namespace Serial_Comm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new txtTemp());
+            Application.Run(new MainForm());
         }
     }
 }
