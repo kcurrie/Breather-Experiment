@@ -10,8 +10,6 @@ using System.IO.Ports;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using System.Media;
-//using PISDK;
-//using PISDKCommon;
 using Excel=Microsoft.Office.Interop.Excel;
 using MetroFramework.Forms;
 using System.Globalization;
@@ -56,7 +54,6 @@ namespace Serial_Comm
         //Communication variables
         ConcurrentQueue<int> serialQueue1 = new ConcurrentQueue<int>();
         ConcurrentQueue<int> serialQueue2 = new ConcurrentQueue<int>();
-        //private string[] commandList = { "Error", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Encoder" };
         Dictionary<string, int> currentData = new Dictionary<string,int>{
             {"Time", 0},
             {"Humidity", 0},
@@ -74,49 +71,12 @@ namespace Serial_Comm
         public int numberOfDataPoints1 = 0;
         public int numberOfDataPoints2 = 0;    
         
-        /*
-        double humidity = 0; // [%]
-        double temp_p = 0; // [temperature from humidity sensor - Fahrenheit]
-        double temp_h = 0;  //[temperature from humidity sensor - Celsius]
-        double pressure = 0;
-        double dewpt; // [dewpoint C] 
-        double batt_lvl = 11.8; //[analog value from 0 to 1023]
-     * */
-
-        /*
-        int commandByte, dataByte1, dataByte2, exitByte;
-        double currentRPM, currentFrequency;
-        int currentDirection;
-        
-        
-        //Variables for recording position
-        const int numberOfPointsToRecord = 2000;
-        string[] positionData = new string[numberOfPointsToRecord];
-        int positionDataIterator = 0;
-        int previousPosition = 0;
-        bool recordPosition = false;    //true when we want to record the position data
-        */
-
-
-        
+              
         /////////////////////////////////
         public MainForm()
         {
             InitializeComponent();
-            //this.StyleManager = this.msmMain; msmMain is the name of stylemanager;
-
-
-            DataTable _table = new DataTable();
-            _table.ReadXml(@"C:\Users\KCURRIE\Desktop\Breather-Experiment\Winforms-modernui-master\winforms-modernui-master\MetroFramework.Demo\Data\Books.xml");
-            //metroGrid1.DataSource = _table;
-
-            //metroGrid1.Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
-          /*  metroGrid1.AllowUserToAddRows = false;
-
-            private Components.MetroStyleManager metroStyleManager;
-            this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
-
-            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit(); */
+           
         }
 
         private void ComPortUpdate()
@@ -137,17 +97,7 @@ namespace Serial_Comm
                 cmbComPort2.SelectedIndex = 0;
             else
                 cmbComPort2.Text = "No Ports Found!";
-            /*
-            //Check if combo port used by other arduino
-            if( btnConnect1.Text =="Disconnect")
-            {
-                cmbComPort2.Items.Remove(cmbComPort1.SelectedItem.ToString());
-            }
-            if (btnConnect2.Text == "Disconnect")
-            {
-                cmbComPort1.Items.Remove(cmbComPort2.SelectedItem.ToString());
-            }
-            */
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -165,7 +115,6 @@ namespace Serial_Comm
 
         private void cmbComPort1_DropDown(object sender, EventArgs e)
         {
-            //ComPortUpdate();
             cmbComPort1.Items.Clear();
             
             string[] comPortArray = System.IO.Ports.SerialPort.GetPortNames().ToArray();
@@ -176,8 +125,8 @@ namespace Serial_Comm
                 cmbComPort1.SelectedIndex = 0;
             else
                 cmbComPort1.Text = "No Ports Found!";
+
             //Check if combo port used by other arduino
-            
             if (btnConnect2.Text == "Disconnect")
             {
                 cmbComPort1.Items.Remove(cmbComPort2.SelectedItem.ToString());
@@ -187,8 +136,6 @@ namespace Serial_Comm
 
         private void cmbComPort2_DropDown(object sender, EventArgs e)
         {
-            //ComPortUpdate();
-            
             cmbComPort2.Items.Clear();
             string[] comPortArray = System.IO.Ports.SerialPort.GetPortNames().ToArray();
             Array.Reverse(comPortArray);
@@ -429,16 +376,11 @@ namespace Serial_Comm
                         }
                         MySheet.Cells[lastRow1, j] = currentData[key];   //Put data in excel sheet
                         j++;    //Update current row in excel sheet
-                    }
-                    //Remove exit byte
-                    serialQueue1.TryDequeue(out data);
-                    //Save error count
-                    MySheet.Cells[lastRow1, j] = errorCount;
-                    //Fix time
-                    MySheet.Cells[lastRow1,1] = DateTime.Now;
-                    
-
-
+                    }                    
+                    serialQueue1.TryDequeue(out data);  //Remove exit byte
+                    MySheet.Cells[lastRow1, j] = errorCount;    //Save error count
+                    MySheet.Cells[lastRow1,1] = DateTime.Now;   //Fix time
+ 
                     //Plot data on charts
                     plotData(0);    //Plot data in series 0, internal
 
@@ -447,8 +389,7 @@ namespace Serial_Comm
                     txtTempInternal.Text = currentData["Temp_h"].ToString();
                     txtPressureInternal.Text = currentData["Pressure"].ToString();
 
-                    
-                     chartPressure.ChartAreas[0].RecalculateAxesScale();
+                    chartPressure.ChartAreas[0].RecalculateAxesScale();
                      
                 }
             }
@@ -480,14 +421,11 @@ namespace Serial_Comm
                         MySheet.Cells[lastRow2, j] = currentData[key];   //Put data in excel sheet
                         j++;    //Update current row in excel sheet
                     }
-                    //Remove exit byte
-                    serialQueue2.TryDequeue(out data);
-                    //Save error count
-                    MySheet.Cells[lastRow2, j] = errorCount;
-                    //Fix time
-                    MySheet.Cells[lastRow2, currentData.Count()+1 + extraColumns] = DateTime.Now;
-
                     
+                    serialQueue2.TryDequeue(out data);  //Remove exit byte
+                    MySheet.Cells[lastRow2, j] = errorCount;    //Save error count
+                    MySheet.Cells[lastRow2, currentData.Count()+1 + extraColumns] = DateTime.Now;   //Fix time
+
                     //Plot data on charts
                     plotData(1);    //Plot data in series 1, External
 
@@ -525,29 +463,6 @@ namespace Serial_Comm
             chartHumidity.ResetAutoValues();
             chartTemp.ResetAutoValues();
             chartPressure.ResetAutoValues();
-
-            /*
-            chartPressure.ChartAreas[0].RecalculateAxesScale();
-
-            // Enable scale breaks.
-            chartPressure.ChartAreas[0].AxisY.ScaleBreakStyle.Enabled = true;
-
-            // Show scale break if more than 25% of the chart is empty space.
-            chartPressure.ChartAreas[0].AxisY.ScaleBreakStyle.CollapsibleSpaceThreshold = 25;
-
-            // Set the line width of the scale break.
-            chartPressure.ChartAreas[0].AxisY.ScaleBreakStyle.LineWidth = 2;
-
-            // Set the color of the scale break.
-            chartPressure.ChartAreas[0].AxisY.ScaleBreakStyle.LineColor = Color.Red;
-
-            // If all data points are significantly far from zero, the chart will calculate the scale minimum value.
-            chartPressure.ChartAreas[0].AxisY.ScaleBreakStyle.StartFromZero = StartFromZero.No;
-
-            // Set the spacing gap between the lines of the scale break (as a percentage of the Y-axis).
-            chartPressure.ChartAreas[0].AxisY.ScaleBreakStyle.Spacing = 2;
-
-             * */
         }
 
         private void btnSaveData_Click_1(object sender, EventArgs e)
@@ -562,7 +477,6 @@ namespace Serial_Comm
                 MySheet.Cells[2, 2] = txtNotes.Text;        //Add notes to sheet    
                 MySheet.Range[MySheet.Cells[2, 2], MySheet.Cells[2, 9]].Merge();    //Merge cells used for note   
                 MySheet.Columns.AutoFit();
-               // MySheet.Rows.AutoFit();
 
                 filename = dateTimeBox.Text + " - " + filename;
                 MyBook.SaveAs("C:\\Users\\KCURRIE\\Desktop\\Test\\" + filename + ".xlsx");
@@ -671,28 +585,7 @@ namespace Serial_Comm
             {
                 MessageBox.Show("No excel sheet open");
             }
-           
-            
-
         }
-
-        private void metroTileSwitch_Click(object sender, EventArgs e)
-        {
-            var m = new Random();
-            int next = m.Next(0, 13);
-
-            //MetroStyleManager mt = new MetroStyleManager();
-            //metroStyleManager.Style = (MetroColorStyle)next;
-        }
-
-        private void metroTile1_Click(object sender, EventArgs e)
-        {
-            //metroStyleManager.Theme = metroStyleManager.Theme == MetroThemeStyle.Light ? MetroThemeStyle.Dark : MetroThemeStyle.Light;
-        }
-
-
-
-
 
 
     }
@@ -700,213 +593,3 @@ namespace Serial_Comm
 
 
 
-
-/////////////////////////
-//txtPIData.Items.Clear();
-
-//PISDK.PIPoint myPoint = myServer.PIPoints["cppctl21"];
-
-//////////////////////////
-
-
-
-
-
-
-//string fileName = "C:\\Users\\KCURRIE\\Desktop\\Test\\Openme4.xlsx";
-//xlWorkBook.SaveAs("csharp.net-informations.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-
-
-            
-
-            /*
-Excel.Worksheet sheet = workbook.ActiveSheet;
-Excel.Range rng = (Excel.Range) sheet.get_Range(sheet.Cells[1, 1], sheet.Cells[3,3]);
-Where range is one cell:
-
-Excel.Worksheet sheet = workbook.ActiveSheet;
-Excel.Range rng = (Excel.Range) sheet.Cells[1, 1];
-            */
-
-            //myWorkbook.SaveAs(@"C:/pape.xltx", missing, missing, missing, missing, missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, missing, missing, missing, missing, missing);
-
-
-
-//System.IO.File.WriteAllLines("C:\\Users\\KCURRIE\\Desktop\\Test\\test.txt", positionData);
-
-//string fileName = "C:\\Users\\KCURRIE\\Desktop\\Test\\Openme2.xlsx";
-//MyBook = MyApp.Workbooks.Open(fileName);
-//MyBook = MyApp.NewWorkbook.Add(fileName);
-
-
-
-
-/*
-private void btnPositionCommand_Click(object sender, EventArgs e)
-{
-    byte[] TxBytes = new Byte[5];
-    UInt16 dataToSend = 0;
-
-    //Convert textbox input to int to send
-    //dataToSend = Convert.ToUInt16(txtSetPosition.Text);
-
-    //Make sure the target position is greater than 0
-    if (dataToSend < 0)
-        dataToSend = 0;
-
-    try
-    {
-        if (serialPort1.IsOpen)
-        {
-            TxBytes[0] = Convert.ToByte(255);
-            serialPort1.Write(TxBytes, 0, 1);
-
-            TxBytes[1] = Convert.ToByte(6);
-            serialPort1.Write(TxBytes, 1, 1);
-
-            TxBytes[2] = Convert.ToByte(((dataToSend >> 8) & 0xFF));
-            serialPort1.Write(TxBytes, 2, 1);
-
-            TxBytes[3] = Convert.ToByte((dataToSend & 0xFF));
-            serialPort1.Write(TxBytes, 3, 1);
-
-            TxBytes[4] = Convert.ToByte(0);
-            serialPort1.Write(TxBytes, 4, 1);
-        }
-    }
-    catch (Exception Ex)
-    {
-        MessageBox.Show(Ex.Message);
-    }
-
-    //Start Recording Data
-    recordPosition = true;
-    positionDataIterator = 0;
-}
-
-*/
-
-
-//Write data to excel
-/*
-lastRow += 1;
-int j = 0;
-List<string> keys2 = new List<string>(currentData.Keys);
-foreach (var key in keys2)
-{
-    MySheet.Cells[lastRow, j] = currentData[key];
-    j++;
-}
-*/
-//MySheet.Cells[lastRow, 4] = "blah4";
-//int rowIndex = 5; int columnIndex = 2;
-//MySheet.Cells[rowIndex, columnIndex] = "alekjrej";
-
-
-
-/*
-serialQueue1.TryDequeue(out commandByte); txtCommandByte.Text = commandByte.ToString();
-//txtCommand.Text = commandList[commandByte].ToString();
-serialQueue1.TryDequeue(out dataByte1); 
-serialQueue1.TryDequeue(out dataByte2); 
-serialQueue1.TryDequeue(out exitByte); txtExit.Text = exitByte.ToString();
-
-//Deal with exit byte
-if (exitByte != 0)        //exitbyte was used
-{
-    if (exitByte == 1)
-        dataByte1 = 255;
-    if (exitByte == 2)
-        dataByte2 = 255;
-    if (exitByte == 3)
-    {
-        dataByte1 = 255;
-        dataByte2 = 255;
-    }
-}
-txtInputByte1.Text = dataByte1.ToString();
-txtInputByte2.Text = dataByte2.ToString();
-
-//Check what command was input
-if (commandByte == 10 || commandByte == 11)    //Command 10 for encoder stuff
-{
-    //Update currentDirection
-    if (commandByte == 10)
-        currentDirection = 1;
-    else
-        currentDirection = 2;
-
-    //Update the positionData array if we're doing position command
-    if (recordPosition)
-    {
-        if (positionDataIterator < numberOfPointsToRecord)
-        {
-            countsToAdd = Convert.ToInt16(dataByte1) * 256 + Convert.ToInt16(dataByte2);
-                                
-            if (currentDirection == 1)
-            {
-                positionData[positionDataIterator] = Convert.ToString(previousPosition + countsToAdd);
-                previousPosition += countsToAdd;
-            }
-            else if (currentDirection == 2)
-            {
-                positionData[positionDataIterator] = Convert.ToString(previousPosition - countsToAdd);
-                previousPosition -= countsToAdd;
-            }
-
-            positionDataIterator++;
-        }
-        else
-        {
-            recordPosition = false;
-        }
-    }
-                        
-
-
-    //Decode data from bytes to an int - comes in as counts
-    //int currentRPM;
-    if(commandByte == 10)
-        currentRPM = (Convert.ToDouble(dataByte1) * 256 + Convert.ToDouble(dataByte2)) * 60 / 400 * 24000000/8 / 65535;
-    else
-        currentRPM = -1 * (Convert.ToDouble(dataByte1) * 256 + Convert.ToDouble(dataByte2)) * 60 / 400 * 24000000 / 8 / 65535;
-
-                        
-    //If over the end data point count remove points from the beginning of graph
-    if (chartFreq.Series[0].Points.Count > 150)
-    {
-        for (int i = 0; i < 1; i++) { chartFreq.Series[i].Points.RemoveAt(0); }
-    }
-    if (chartRPM.Series[0].Points.Count > 150)
-    {
-        for (int i = 0; i < 1; i++) { chartRPM.Series[i].Points.RemoveAt(0); }
-    }
-
-    //graph and display values
-    chartRPM.Series[0].Points.AddY(currentRPM);
-    currentFrequency = currentRPM /( 60.0);
-    chartFreq.Series[0].Points.AddY(currentFrequency);
-    txtRPM.Text = currentRPM.ToString();
-    txtFreq.Text = currentFrequency.ToString();
-
-    if (currentDirection == 1)
-        txtDirection.Text = "Forward";
-    else
-        txtDirection.Text = "Reverse";
-
-                       
-    //reset graph axes
-    chartRPM.ResetAutoValues();
-    chartFreq.ResetAutoValues();
-}
-                    
- * /
- * /*
-avgCount++;
-maxCount++;
-
-if (avgCount >= 100)
-{
-    txtAvgX.Text = (sum[0] / 100).ToString("F3"); sum[0] -= avg100QueueX.Dequeue();
-}
-*/
