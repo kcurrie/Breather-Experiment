@@ -112,6 +112,8 @@
             this.bntStop = new System.Windows.Forms.Button();
             this.bntContinue = new System.Windows.Forms.Button();
             this.metroTabPage8 = new MetroFramework.Controls.MetroTabPage();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.txtGraphSeconds = new MetroFramework.Controls.MetroTextBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartTemp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartHumidity)).BeginInit();
@@ -440,7 +442,7 @@
             // dateTimeBox
             // 
             this.dateTimeBox.Location = new System.Drawing.Point(87, 20);
-            this.dateTimeBox.MinimumSize = new System.Drawing.Size(4, 29);
+            this.dateTimeBox.MinimumSize = new System.Drawing.Size(0, 29);
             this.dateTimeBox.Name = "dateTimeBox";
             this.dateTimeBox.Size = new System.Drawing.Size(200, 29);
             this.dateTimeBox.TabIndex = 98;
@@ -454,13 +456,15 @@
             this.metroTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl2.Location = new System.Drawing.Point(20, 110);
             this.metroTabControl2.Name = "metroTabControl2";
-            this.metroTabControl2.SelectedIndex = 3;
+            this.metroTabControl2.SelectedIndex = 0;
             this.metroTabControl2.Size = new System.Drawing.Size(842, 586);
             this.metroTabControl2.TabIndex = 100;
             this.metroTabControl2.UseSelectable = true;
             // 
             // metroTabPage6
             // 
+            this.metroTabPage6.Controls.Add(this.txtGraphSeconds);
+            this.metroTabPage6.Controls.Add(this.metroLabel1);
             this.metroTabPage6.Controls.Add(this.txtNotes);
             this.metroTabPage6.Controls.Add(this.btnSaveOnly);
             this.metroTabPage6.Controls.Add(this.btnSaveData);
@@ -911,6 +915,31 @@
             this.metroTabPage8.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage8.VerticalScrollbarSize = 10;
             // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(13, 193);
+            this.metroLabel1.Margin = new System.Windows.Forms.Padding(3);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(182, 19);
+            this.metroLabel1.TabIndex = 110;
+            this.metroLabel1.Text = "Number of Seconds to Graph";
+            // 
+            // txtGraphSeconds
+            // 
+            this.txtGraphSeconds.IconRight = true;
+            this.txtGraphSeconds.Lines = new string[0];
+            this.txtGraphSeconds.Location = new System.Drawing.Point(203, 190);
+            this.txtGraphSeconds.MaxLength = 32767;
+            this.txtGraphSeconds.Name = "txtGraphSeconds";
+            this.txtGraphSeconds.PasswordChar = '\0';
+            this.txtGraphSeconds.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtGraphSeconds.SelectedText = "";
+            this.txtGraphSeconds.Size = new System.Drawing.Size(208, 22);
+            this.txtGraphSeconds.TabIndex = 111;
+            this.txtGraphSeconds.UseSelectable = true;
+            this.txtGraphSeconds.UseStyleColors = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1014,6 +1043,8 @@
         private MetroFramework.Controls.MetroTextBox txtTempExternal;
         private MetroFramework.Controls.MetroTextBox txtPressureExternal;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartPressure;
+        private MetroFramework.Controls.MetroTextBox txtGraphSeconds;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
     }
 }
 

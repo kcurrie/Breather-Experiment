@@ -73,9 +73,10 @@ namespace Serial_Comm
         public int numberOfDataPoints2 = 0;   
  
         //Chart Variables
-        int maxChartVal = 100000;       //Bug in chart library: ensure values less than or greater than these
+        int maxChartVal = 100000;       //Bug in chart library: ensure values less than or greater than these min/max values
         int minChartVal = -100000;
-        
+        int graphSeconds = 120;         //Number of seconds to view on graph, removes earliest graph points as we go
+        int numSeries = 2;              //Number of data series on our graphs: internal and external means 2
               
         /////////////////////////////////
         public MainForm()
@@ -239,6 +240,17 @@ namespace Serial_Comm
         {
             try
             {
+                graphSeconds = Convert.ToInt16(txtGraphSeconds.Text);
+            }
+            catch (Exception Ex)
+            {//do nothing, leave as default
+            }
+
+            if(txtGraphSeconds.Text == "")
+                MessageBox.Show(string.Format("Graph at {0} second intervals default", graphSeconds));
+            
+            try
+            {
                 if (serialPort1.IsOpen)
                 {
                     serialPort1.Write("start\r");
@@ -260,6 +272,7 @@ namespace Serial_Comm
                 MessageBox.Show(Ex.Message);
             }
 
+            
             tmrData.Enabled = true;         //Start reading data
             startExcel();
             
@@ -371,37 +384,36 @@ namespace Serial_Comm
                     foreach (var key in keys)
                     {
                         serialQueue1.TryDequeue(out data);      //Remove data from queue
-                        if (data != 0)                          //Filter data: if =0, reuse last value for that key
+                        if (data == 0)                          //Filter data: if =0, reuse last value for that key
+                        {
+                            errorCount++;              //Count how many errors are in this packetcurrentData[key] = data;            //Put data in its respective key
+                        }
+                        else if (errorCount == 0)               //Else If this data is ok, check all other data in packet has been ok  
                         {
                             currentData[key] = data;            //Put data in its respective key
                         }
-                        else
-                        {
-                           errorCount++;              //Count how many errors are in this packet
-                        }
+                        //If any other data values have errors, use last value for that key and don't update error count (do nothing)
                         MySheet.Cells[lastRow1, j] = currentData[key];   //Put data in excel sheet
                         j++;    //Update current row in excel sheet
                     }                    
                     serialQueue1.TryDequeue(out data);  //Remove exit byte
                     MySheet.Cells[lastRow1, j] = errorCount;    //Save error count
                     MySheet.Cells[lastRow1,1] = DateTime.Now;   //Fix time
- 
+
                     //Display data text
                     txtHumidityInternal.Text = currentData["Humidity"].ToString();
                     txtTempInternal.Text = currentData["Temp_h"].ToString();
                     txtPressureInternal.Text = currentData["Pressure"].ToString();
                     
                     //Plot data on charts
-                    plotData(0);    //Plot data in series 0, internal
-
-                 
-                    //chartPressure.ChartAreas[0].RecalculateAxesScale();
-                     
+                    plotData(0);    //Plot data in series 0, internal                     
                 }
             }
             
             while (serialQueue2.Count > 2)
-            {  
+            {
+                data = 0;
+                errorCount = 0;
                 serialQueue2.TryDequeue(out data);
                 if (data == startByte)
                 {
@@ -416,14 +428,15 @@ namespace Serial_Comm
                     foreach (var key in keys)
                     {
                         serialQueue2.TryDequeue(out data);      //Remove data from queue                     
-                        if (data != 0)                          //Filter data: if =0, reuse last value for that key
+                        if (data == 0)                          //Filter data: if =0, reuse last value for that key
+                        {
+                            errorCount++;              //Count how many errors are in this packetcurrentData[key] = data;            //Put data in its respective key
+                        }
+                        else if (errorCount == 0)               //Else If this data is ok, check all other data in packet has been ok  
                         {
                             currentData[key] = data;            //Put data in its respective key
                         }
-                        else
-                        {
-                            errorCount++;              //Count how many errors are in this packet
-                        }
+                        //If any other data values have errors, use last value for that key and don't update error count (do nothing)
                         MySheet.Cells[lastRow2, j] = currentData[key];   //Put data in excel sheet
                         j++;    //Update current row in excel sheet
                     }
@@ -451,17 +464,20 @@ namespace Serial_Comm
         private void plotData(int series)
         {
             //If over the end data point count remove points from the beginning of graph
-            if (chartHumidity.Series[series].Points.Count > 150)
+            if (chartHumidity.Series[series].Points.Count > graphSeconds)
             {
-                for (int i = 0; i < 1; i++) { chartHumidity.Series[i].Points.RemoveAt(0); }
+                //for (int i = 0; i < numSeries; i++) { chartHumidity.Series[i].Points.RemoveAt(0); }
+                chartHumidity.Series[series].Points.RemoveAt(0);
             }
-            if (chartTemp.Series[series].Points.Count > 150)
+            if (chartTemp.Series[series].Points.Count > graphSeconds)
             {
-                for (int i = 0; i < 1; i++) { chartTemp.Series[i].Points.RemoveAt(0); }
+                //for (int i = 0; i < numSeries; i++) { chartTemp.Series[i].Points.RemoveAt(0); }
+                chartTemp.Series[series].Points.RemoveAt(0);
             }
-            if (chartPressure.Series[series].Points.Count > 150)
+            if (chartPressure.Series[series].Points.Count > graphSeconds)
             {
-                for (int i = 0; i < 1; i++) { chartPressure.Series[i].Points.RemoveAt(0); }
+                //for (int i = 0; i < numSeries; i++) { chartPressure.Series[i].Points.RemoveAt(0); }
+                chartPressure.Series[series].Points.RemoveAt(0);
             }
                           
             //Try to graph and display values. Use filter fxn to ensure no chart errors and big red chart X's
@@ -516,7 +532,7 @@ namespace Serial_Comm
                 filename = dateTimeBox.Text + " - " + filename;
 
                 MyBook.SaveAs(filepath + filename + ".xlsx");
-                
+
                 MyBook.Close(0);
                 MyApp.Quit();
                 releaseObject(MySheet);
