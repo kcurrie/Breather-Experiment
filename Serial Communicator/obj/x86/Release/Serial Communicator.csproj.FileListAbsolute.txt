@@ -1,0 +1,15 @@
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Release\Interop.Office.dll
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Release\Serial Communicator.csproj.ResolveComReference.cache
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Release\MetroFramework.dll
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Release\MetroFramework.Fonts.dll
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Release\Properties.Resources.Designer.cs.dll
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Release\Serial_Comm.MainForm.resources
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Release\Serial_Comm.Properties.Resources.resources
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Release\Serial Communicator.csproj.GenerateResource.Cache
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Release\Serial Communicator.exe.config
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Release\Serial Communicator.exe
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Release\Serial Communicator.pdb
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Release\MetroFramework.Design.dll
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Release\Serial Communicator.csprojResolveAssemblyReference.cache
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Release\Serial Communicator.exe
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Release\Serial Communicator.pdb

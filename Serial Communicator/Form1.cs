@@ -46,6 +46,7 @@ namespace Serial_Comm
         private static Excel.Application MyApp = null;
         private static Excel.Worksheet MySheet = null;
         object misValue = System.Reflection.Missing.Value;
+        string filepath = "C:\\Users\\CPP\\Desktop\\Test\\";        //use C:\\Users\\KCURRIE\\Desktop\\Test\\ on desktop
         string filename;
         int lastRow1 = 1;
         int lastRow2 = 1;
@@ -69,7 +70,11 @@ namespace Serial_Comm
         int startByte = 255;
         int errorCount = 0;
         public int numberOfDataPoints1 = 0;
-        public int numberOfDataPoints2 = 0;    
+        public int numberOfDataPoints2 = 0;   
+ 
+        //Chart Variables
+        int maxChartVal = 100000;       //Bug in chart library: ensure values less than or greater than these
+        int minChartVal = -100000;
         
               
         /////////////////////////////////
@@ -381,15 +386,16 @@ namespace Serial_Comm
                     MySheet.Cells[lastRow1, j] = errorCount;    //Save error count
                     MySheet.Cells[lastRow1,1] = DateTime.Now;   //Fix time
  
-                    //Plot data on charts
-                    plotData(0);    //Plot data in series 0, internal
-
                     //Display data text
                     txtHumidityInternal.Text = currentData["Humidity"].ToString();
                     txtTempInternal.Text = currentData["Temp_h"].ToString();
                     txtPressureInternal.Text = currentData["Pressure"].ToString();
+                    
+                    //Plot data on charts
+                    plotData(0);    //Plot data in series 0, internal
 
-                    chartPressure.ChartAreas[0].RecalculateAxesScale();
+                 
+                    //chartPressure.ChartAreas[0].RecalculateAxesScale();
                      
                 }
             }
@@ -426,13 +432,16 @@ namespace Serial_Comm
                     MySheet.Cells[lastRow2, j] = errorCount;    //Save error count
                     MySheet.Cells[lastRow2, currentData.Count()+1 + extraColumns] = DateTime.Now;   //Fix time
 
-                    //Plot data on charts
-                    plotData(1);    //Plot data in series 1, External
-
                     //Display data text
                     txtHumidityExternal.Text = currentData["Humidity"].ToString();
                     txtTempExternal.Text = currentData["Temp_h"].ToString();
-                    txtPressureExternal.Text = currentData["Pressure"].ToString(); 
+                    txtPressureExternal.Text = currentData["Pressure"].ToString();
+                    
+                    //Plot data on charts
+                    plotData(1);    //Plot data in series 1, External
+
+
+                     
                 }
              
             }
@@ -454,15 +463,41 @@ namespace Serial_Comm
             {
                 for (int i = 0; i < 1; i++) { chartPressure.Series[i].Points.RemoveAt(0); }
             }
+                          
+            //Try to graph and display values. Use filter fxn to ensure no chart errors and big red chart X's
+            //http://stackoverflow.com/questions/17210257/microsoft-chart-control-redraw-chart-after-failure-red-cross
+            try
+            {
+                chartHumidity.Series[series].Points.AddY(filteredChartData("Humidity"));
+                chartTemp.Series[series].Points.AddY(filteredChartData("Temp_h"));
+                chartPressure.Series[series].Points.AddY(filteredChartData("Pressure"));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Chart plot error");
+            }
 
-            //graph and display values
-            chartHumidity.Series[series].Points.AddY(currentData["Humidity"]);
-            chartTemp.Series[series].Points.AddY(currentData["Temp_h"]);
-            chartPressure.Series[series].Points.AddY(currentData["Pressure"]);
+            //Try to update axis scales
+            try
+            {
+                chartHumidity.ResetAutoValues();
+                chartTemp.ResetAutoValues();
+                chartPressure.ResetAutoValues();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Reset Auto Values Error");
+            }
+        }
 
-            chartHumidity.ResetAutoValues();
-            chartTemp.ResetAutoValues();
-            chartPressure.ResetAutoValues();
+        private int filteredChartData(string key)       //Ensures values to chart are within limits of chart
+        {
+            if (currentData[key] < minChartVal)
+                return minChartVal;
+            else if (currentData[key] > maxChartVal)
+                return maxChartVal;
+            else
+                return currentData[key];
         }
 
         private void btnSaveData_Click_1(object sender, EventArgs e)
@@ -479,7 +514,8 @@ namespace Serial_Comm
                 MySheet.Columns.AutoFit();
 
                 filename = dateTimeBox.Text + " - " + filename;
-                MyBook.SaveAs("C:\\Users\\KCURRIE\\Desktop\\Test\\" + filename + ".xlsx");
+
+                MyBook.SaveAs(filepath + filename + ".xlsx");
                 
                 MyBook.Close(0);
                 MyApp.Quit();
@@ -501,7 +537,7 @@ namespace Serial_Comm
             else
             {
                 filename = dateTimeBox.Text + " - " + filename;
-                MyBook.SaveAs("C:\\Users\\KCURRIE\\Desktop\\Test\\" + filename + ".xlsx");
+                MyBook.SaveAs(filepath + filename + ".xlsx");
                 MessageBox.Show("Excel File Saved");
             }
           
@@ -586,6 +622,8 @@ namespace Serial_Comm
                 MessageBox.Show("No excel sheet open");
             }
         }
+
+
 
 
     }

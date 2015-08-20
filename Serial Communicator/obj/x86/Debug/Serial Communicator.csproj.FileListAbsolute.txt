@@ -13,14 +13,16 @@ S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testi
 S:\Salaried\Maintenance\Public\Reliability\2015-05 - Breather Experimental Testing\Programming\Serial Communicator\bin\Debug\MetroFramework.Fonts.dll
 C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Debug\Interop.Office.dll
 C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Debug\Serial Communicator.csproj.ResolveComReference.cache
-C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Debug\MECH423 Serial Communicator.exe
-C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Debug\MECH423 Serial Communicator.exe
-C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Debug\MECH423 Serial Communicator.pdb
 C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Debug\MetroFramework.dll
 C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Debug\MetroFramework.Fonts.dll
 C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Debug\Serial Communicator.csprojResolveAssemblyReference.cache
 C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Debug\Serial_Comm.Properties.Resources.resources
 C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Debug\Serial Communicator.csproj.GenerateResource.Cache
-C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Debug\MECH423 Serial Communicator.pdb
 C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Debug\Properties.Resources.Designer.cs.dll
 C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Debug\Serial_Comm.MainForm.resources
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Debug\Serial Communicator.exe.config
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Debug\Serial Communicator.exe
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Debug\Serial Communicator.pdb
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\bin\Debug\MetroFramework.Design.dll
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Debug\Serial Communicator.exe
+C:\Users\KCURRIE\Desktop\Breather-Experiment\Serial Communicator\obj\x86\Debug\Serial Communicator.pdb
