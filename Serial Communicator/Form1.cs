@@ -77,6 +77,7 @@ namespace Serial_Comm
         int minChartVal = -100000;
         int graphSeconds = 120;         //Number of seconds to view on graph, removes earliest graph points as we go
         int numSeries = 2;              //Number of data series on our graphs: internal and external means 2
+        int dataErrorValue = 0;       //If incoming data is this value it is an error
               
         /////////////////////////////////
         public MainForm()
@@ -384,7 +385,7 @@ namespace Serial_Comm
                     foreach (var key in keys)
                     {
                         serialQueue1.TryDequeue(out data);      //Remove data from queue
-                        if (data == 0)                          //Filter data: if =0, reuse last value for that key
+                        if (data == dataErrorValue)             //Filter data: if = error value, reuse last value for that key
                         {
                             errorCount++;              //Count how many errors are in this packetcurrentData[key] = data;            //Put data in its respective key
                         }
@@ -428,7 +429,7 @@ namespace Serial_Comm
                     foreach (var key in keys)
                     {
                         serialQueue2.TryDequeue(out data);      //Remove data from queue                     
-                        if (data == 0)                          //Filter data: if =0, reuse last value for that key
+                        if (data == dataErrorValue)                          //Filter data: if = errorvalue, reuse last value for that key
                         {
                             errorCount++;              //Count how many errors are in this packetcurrentData[key] = data;            //Put data in its respective key
                         }
