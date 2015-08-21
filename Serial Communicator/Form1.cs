@@ -19,7 +19,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Serial_Comm
 {
-
+    //Not used, only for the pretty formatting
     public enum MetroColorStyle
     {
         Default,
@@ -78,6 +78,7 @@ namespace Serial_Comm
         int graphSeconds = 120;         //Number of seconds to view on graph, removes earliest graph points as we go
         int numSeries = 2;              //Number of data series on our graphs: internal and external means 2
         int dataErrorValue = 0;       //If incoming data is this value it is an error
+        string dataErrorException = "Humidity";     //If needed, use this to say a key which should be excluded from data error filtering
               
         /////////////////////////////////
         public MainForm()
@@ -385,7 +386,8 @@ namespace Serial_Comm
                     foreach (var key in keys)
                     {
                         serialQueue1.TryDequeue(out data);      //Remove data from queue
-                        if (data == dataErrorValue)             //Filter data: if = error value, reuse last value for that key
+                        if (data == dataErrorValue && key != dataErrorException)
+                        //Filter data: if = errorvalue, reuse last value for that key. If the key is an exception and shouldn't be filtered, leave it alone
                         {
                             errorCount++;              //Count how many errors are in this packetcurrentData[key] = data;            //Put data in its respective key
                         }
@@ -429,7 +431,8 @@ namespace Serial_Comm
                     foreach (var key in keys)
                     {
                         serialQueue2.TryDequeue(out data);      //Remove data from queue                     
-                        if (data == dataErrorValue)                          //Filter data: if = errorvalue, reuse last value for that key
+                        if (data == dataErrorValue && key != dataErrorException)     
+                        //Filter data: if = errorvalue, reuse last value for that key. If the key is an exception and shouldn't be filtered, leave it alone
                         {
                             errorCount++;              //Count how many errors are in this packetcurrentData[key] = data;            //Put data in its respective key
                         }

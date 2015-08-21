@@ -122,8 +122,8 @@ void loop()
         }
       }
   
-      //printWeather(); //Report all readings every second
-      writeData();      //Sends data over serial every second
+      //printWeather(); //Report all readings every second: use this with putty for debugging, sends strings
+      writeData();      //Sends data over serial every second in integer form
       digitalWrite(STAT1, LOW); //Turn off stat LED
     }
   }
@@ -282,6 +282,18 @@ void printWeather()
   Serial.print(batt_lvl, 2);
   Serial.print(",");
   Serial.println("#");
+
+  /*
+  Serial.print(255);  //send start byte
+  Serial.print(10);  //placeholder for time
+  Serial.print((humidity*conversion));
+  Serial.print((temp_h*conversion));
+  Serial.print((temp_p*conversion));
+  Serial.print((pressure*conversion));
+  Serial.print((dewpt*conversion));
+  Serial.print((batt_lvl*conversion));
+  Serial.print(conversion);
+  */
 }
 
 //Writes a data packet to the serial port
@@ -289,6 +301,15 @@ void writeData()
 {
   calcWeather();
   
+  //If humidity is negative, must change it to a zero (can't deal with negative numbers)
+  if(humidity<0)
+  {
+    humidity = 0;
+  }
+  if(humidity>100)
+  {
+    humidity = 100;
+  }
   Serial.write(255);  //send start byte
   Serial.write(10);  //placeholder for time
   Serial.write((int)(humidity*conversion));
