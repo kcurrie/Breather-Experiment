@@ -46,7 +46,7 @@ double dewpt; // [dewpoint C]
 
 double batt_lvl = 11.8; //[analog value from 0 to 1023]
 
-volatile boolean runExperiment = true;
+volatile boolean runExperiment = true;    //Can modify this so that arduino doesn't start until you set this to true
 String inputString = "";          //For incoming data
 boolean stringComplete = false;   //shows if incoming data is complete
 
@@ -73,7 +73,7 @@ void setup()
   myHumidity.begin();
 
   seconds = 0;
-  lastSecond = millis();
+  lastSecond = millis();    //how long the arduino has been running
 
   // turn on interrupts
   interrupts();
@@ -86,6 +86,7 @@ void setup()
 void loop()
 {
   //Take commands/info from Serial
+  //Arduino will start despite this, its really not used
   if(stringComplete)
   {
     if(inputString == "start")
@@ -100,6 +101,7 @@ void loop()
   }
   
   //Check to see if experiment should be running or reset
+  //Run experiment is set to true so that arduino begins sensing as soon as it is plugged in
   if(runExperiment == true)
   {
     //Keep track of which minute it is
@@ -153,6 +155,7 @@ void serialEvent()
 }
 
 //////////////////////////////////////////////////////////////
+////////////GENERAL FUNCTIONS//////////////////////////////////
 
 //Calculates each of the variables that wunderground is expecting
 void calcWeather()
@@ -259,6 +262,7 @@ void serialPrintTime()
   Serial.println(seconds);    //newline printed after seconds
 }
 
+//USE ME IF PRINTING TO PUTTY: THIS PRINTS STRINGS
 //Prints the various variables directly to the port
 //I don't like the way this function is written but Arduino doesn't support doubles under sprintf
 void printWeather()
@@ -296,6 +300,7 @@ void printWeather()
   */
 }
 
+//USE ME IF PRINTING TO BREATHER GUI: PRINTS BYTES
 //Writes a data packet to the serial port
 void writeData()
 {
@@ -310,6 +315,9 @@ void writeData()
   {
     humidity = 100;
   }
+  
+  //Add a check that values are less than 255, set to 254 if so
+  
   Serial.write(255);  //send start byte
   Serial.write(10);  //placeholder for time
   Serial.write((int)(humidity*conversion));

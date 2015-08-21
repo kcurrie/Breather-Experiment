@@ -455,15 +455,16 @@ namespace Serial_Comm
                     txtPressureExternal.Text = currentData["Pressure"].ToString();
                     
                     //Plot data on charts
-                    plotData(1);    //Plot data in series 1, External
-
-
-                     
+                    plotData(1);    //Plot data in series 1, External   
                 }
              
             }
         
         }
+
+// General functions/////////////
+
+
 
         private void plotData(int series)
         {
@@ -520,6 +521,7 @@ namespace Serial_Comm
                 return currentData[key];
         }
 
+        //End recording button: saves and closes excel
         private void btnSaveData_Click_1(object sender, EventArgs e)
         {
             filename = txtFileName.Text;
@@ -547,7 +549,7 @@ namespace Serial_Comm
             }
         }
 
-
+        //Save button: only saves but experiment keeps running
         private void btnSaveOnly_Click(object sender, EventArgs e)
         {
            
@@ -581,6 +583,7 @@ namespace Serial_Comm
             }
         }
 
+        //Hong stuff, not used
         private void genericTextBoxEventHandler(object sender, EventArgs e)
         {
             TextBox currentTextBox = sender as TextBox;
